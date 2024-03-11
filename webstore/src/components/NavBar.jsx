@@ -14,14 +14,14 @@ function createNavBar() {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <NavDropdown title="Products" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.1">Fruits</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
-                Another action
+                Drinks
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Dairy</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
-                Separated link
+                Bread
               </NavDropdown.Item>
             </NavDropdown>
           <Form>
