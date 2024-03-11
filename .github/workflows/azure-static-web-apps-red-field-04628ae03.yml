@@ -37,7 +37,7 @@ jobs:
           action: "upload"
           app_location: "/webstore"
           api_location: ""
-          output_location: "/webstore/dist"
+          output_location: "/dist"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
