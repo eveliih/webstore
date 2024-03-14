@@ -1,23 +1,42 @@
-.container {
-  margin: 10px auto;
-
+:root {
+  --font-color: #ffffff; /* replace with your preferred color */
 }
 
 #appContainer {
-  margin-top: 1rem !important;
+  margin: 1rem 0 !important ;
+  padding: 2rem 3rem;
+  background-color: #F5F5F5;
+  min-width: 100vw;
 }
 
 #root {
-  margin: 0px auto;
-  padding: 0px auto;
+  margin: 0px ;
+  padding: 0px ;
 }
 
-body {
-    margin: 0;
-    display: flex;
-    place-items: center;
-    min-width: 320px;
-    min-height: 100vh;
-    flex-direction: column;
+html, body {
+  margin: 0;
+  flex-direction: column
 }
 
+.custom-colors-nav, #custom-nav {
+  padding: 1.2rem 2rem;
+  background-color: #ffffff !important;
+  min-width: 100vw;
+  
+}
+
+/* #brand-col, #sign-in-color, .navbar-brand, #custom-nav {
+  color: var(--font-color);
+
+} */
+
+#brand-col{
+  color: #0F612A;
+  font-weight: bolder;
+  font-size: x-large;
+}
+.top-bar{
+  background-color: #ffffff !important;
+  min-height: 1rem;
+}

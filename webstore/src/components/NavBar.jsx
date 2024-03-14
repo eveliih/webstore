@@ -8,9 +8,9 @@ import Col from 'react-bootstrap/Col';
 
 function createNavBar() {
   return (
-    <Navbar className="bg-body-tertiary" expand="lg">
+    <Navbar id='custom-nav' className="bg-body-tertiary custom-colors-nav" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#home">FoodOnline</Navbar.Brand>
+        <Navbar.Brand id='brand-col' href="#home">FoodOnline</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Row>
@@ -38,14 +38,14 @@ function createNavBar() {
                   />
                 </Col>
                 <Col xs="auto">
-                  <Button type="submit">Search</Button>
+                  <Button type="submit" variant="outline-dark" >Search</Button>
                 </Col>
               </Row>
       </Form>
       </Col>
-      <Col md="auto">
-          <Navbar.Text>
-            Signed in as: <a href="#login">Mark Otto</a>
+      <Col md="auto" >
+          <Navbar.Text id='sign-in-color'>
+            Signed in as: <a href="#login" id='sign-in-color'>Mark Otto</a>
           </Navbar.Text>
       </Col>
 

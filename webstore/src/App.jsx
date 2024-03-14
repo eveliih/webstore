@@ -19,6 +19,7 @@ function App() {
 
   return (
     <>
+    <div className='top-bar'></div>
     <NavBar />
       <Container id='appContainer' >
         <Row>
