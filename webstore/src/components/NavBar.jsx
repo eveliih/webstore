@@ -9,10 +9,12 @@ import Col from 'react-bootstrap/Col';
 function createNavBar() {
   return (
     <Navbar className="bg-body-tertiary" expand="lg">
-      <Container>
+      <Container fluid>
         <Navbar.Brand href="#home">FoodOnline</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
+          <Row>
+            <Col md="auto">
           <NavDropdown title="Products" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Fruits</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
@@ -24,24 +26,30 @@ function createNavBar() {
                 Bread
               </NavDropdown.Item>
             </NavDropdown>
+            </Col>
+            <Col md="auto">
           <Form>
               <Row>
                 <Col xs="auto">
                   <Form.Control
                     type="text"
-                    placeholder="Search"
+                    placeholder="Search products..."
                     className=" mr-sm-2"
                   />
                 </Col>
                 <Col xs="auto">
-                  <Button type="submit">Submit</Button>
+                  <Button type="submit">Search</Button>
                 </Col>
               </Row>
       </Form>
-            
+      </Col>
+      <Col md="auto">
           <Navbar.Text>
             Signed in as: <a href="#login">Mark Otto</a>
           </Navbar.Text>
+      </Col>
+
+          </Row>
         </Navbar.Collapse>
       </Container>
     </Navbar>
