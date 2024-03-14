@@ -1,6 +1,8 @@
 # webstore
 Project for FullStack open course.
 
+[App running here](https://onlinefoodapp.azurewebsites.net/)
+
 - Link to an address, where the application is running. If you're creating a mobile application, demo will be scheduled individually.
 - Some user instructions and explanation of the purpose of your project (ie. what does it do), or a link to them
 - Link to work hours listing. Do it as a .md, pdf, or in some way that is immediately visible (ie. no file download required)
