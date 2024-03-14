@@ -5,9 +5,17 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect, useState } from 'react';
+import fruitService from './services/products';
 
 function App() {
- 
+  const [fruits, setFruits] = useState([]);
+
+  useEffect(() => {
+    fruitService.getAll().then((fruits) => {
+      setFruits(fruits);
+    });
+  });
 
   return (
     <>
@@ -26,17 +34,14 @@ function App() {
               We hope you find what you are looking for. moi
             </p>
           </Col>
-          <Row>  
-          <Col >
-          <Card 
-              imageUrl="https://images.pexels.com/photos/1093038/pexels-photo-1093038.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-              title="Bananas" 
-              price="15.9/kg"
-/>
-          </Col>
-          </Row>
-
         </Row>
+          <Row>  
+            {fruits.map((fruit) => 
+              <Col key={fruit.id}>
+                <Card imageUrl={fruit.url} title={fruit.name} price={fruit.price} />
+              </Col>
+            )}
+          </Row>
       </Container>
     </>
   )

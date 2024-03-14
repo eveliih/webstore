@@ -27,7 +27,7 @@ function CardComponent(props) {
         e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.3)';
       }}
     >
-      <Card.Img variant="top" src={imageUrl} style={{ width: '18rem', height: '18rem' }} />
+      <Card.Img variant="top" src={imageUrl}  style={{ width: 'auto', height: '16rem' }}  />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>Price: {price}</Card.Text>
