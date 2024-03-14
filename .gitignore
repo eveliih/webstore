@@ -38,6 +38,7 @@ bower_components/
 
 # Build files
 /build/
+dist
 
 # Coverage output
 coverage/
@@ -45,3 +46,5 @@ coverage/
 # System files
 Thumbs.db
 .DS_Store
+
+.vscode/
