@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build:ui": "if exist dist rd /s/q dist && cd ./webstore/ && npm run build && xcopy /I/E dist ..\\dist",
+    "build:ui": "cd ./webstore/ && npm run build && xcopy /I/E dist ..\\dist",
     "build:ubuntu:ui": "rm -rf dist && cd ../webstore/ && npm run build && cp -r dist ..",
     "test": "echo \" no test specified\" "
   },
