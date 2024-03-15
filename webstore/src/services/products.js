@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = '/api/fruits' //import.meta.env.VITE_APP_BASE_URL;
+const baseUrl = import.meta.env.VITE_APP_BASE_URL;
 
 const getAll = () => {
   const request = axios.get(baseUrl);

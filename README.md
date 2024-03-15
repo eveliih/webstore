@@ -1,6 +1,6 @@
 # webstore
 Project for FullStack open course.
-
+[Coolors värit] (https://coolors.co/ffffff-f5f5f5-f3f7f4-32493a-188c3e)
 [App running here](https://onlinefoodapp.azurewebsites.net/)
 
 - Link to an address, where the application is running. If you're creating a mobile application, demo will be scheduled individually.

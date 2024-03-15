@@ -26,6 +26,8 @@ jobs:
           npm install
           npm run build:ui:ubuntu --if-present
           npm run test --if-present
+        env:
+          VITE_APP_BASE_URL: /api/fruits
 
       - name: Zip artifact for deployment
         run: |
