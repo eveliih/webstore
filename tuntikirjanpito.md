@@ -10,6 +10,10 @@
 | 14.3 | 3   | Backend käyttämään frontendin deploy versiota, koko sovelluksen tuotantoversion vieminen Azureen, Azureen perehtyminen |
 | 14.3 | 2   | GitHub Actionin luominen Azureen deployn tekemiseksi, homman hienosäätö ja oikein toimimaan saaminen. Kova yritys saada käyttöön ympäristömuuttujat |
 | 15.3 | 4   | Azuren tietokantoihin perehtyminen, ympäristömuuttujiin jatkoperehtyminen, SQL Databasen ja serverin luominen Azureen, tietokannan testaus |
+| 18.3 | 2   | Azuren SQL Server Management Studion (SSMS) lataaminen ja käytön harjoittelu, T-SQL perehtyminen |
+| 19.3 | 2   | Tietokannan ja taulujen suunnittelu, tietokantaan taulujen luominen ja yhteyden kokeilu |
+
+
 
 
 
