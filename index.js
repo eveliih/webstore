@@ -71,8 +71,9 @@ const main = async () => {
   try {
     await sequelize.authenticate()
     console.log('Connection has been established successfully.')
-    const products = await sequelize.query("SELECT * FROM products", { type: QueryTypes.SELECT })
-    console.log(products)
+    const product1 = await sequelize.query("SELECT * FROM products WHERE Product_Id = 1", { type: QueryTypes.SELECT })
+    const image = await sequelize.query("SELECT * FROM Images WHERE Product_Id = 1", { type: QueryTypes.SELECT })
+    console.log(product1, image)
     sequelize.close()
   } catch (error) {
     console.error('Unable to connect to the database:', error)

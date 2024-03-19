@@ -12,6 +12,8 @@
 | 15.3 | 4   | Azuren tietokantoihin perehtyminen, ympäristömuuttujiin jatkoperehtyminen, SQL Databasen ja serverin luominen Azureen, tietokannan testaus |
 | 18.3 | 2   | Azuren SQL Server Management Studion (SSMS) lataaminen ja käytön harjoittelu, T-SQL perehtyminen |
 | 19.3 | 2   | Tietokannan ja taulujen suunnittelu, tietokantaan taulujen luominen ja yhteyden kokeilu |
+| 19.3 | 1  | Taulujen relaatioiden hiominen |
+
 
 
 
