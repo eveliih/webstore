@@ -6,7 +6,7 @@
   margin: 1rem 0 !important ;
   padding: 2rem 3rem;
   background-color: #F5F5F5;
-  min-width: 100vw;
+  min-width: 100%;
 }
 
 #root {
@@ -22,10 +22,21 @@ html, body {
 .custom-colors-nav, #custom-nav {
   padding: 1.2rem 2rem;
   background-color: #ffffff !important;
-  min-width: 100vw;
+  min-width: 100%;
   
 }
 
+#mainHeader{
+  margin-bottom: 0.5em;
+}
+
+#introText{
+  margin-bottom: 3.5em;
+}
+
+.product-col {
+  margin-bottom: 1rem; /* Adjust as needed */
+}
 /* #brand-col, #sign-in-color, .navbar-brand, #custom-nav {
   color: var(--font-color);
 

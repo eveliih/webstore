@@ -24,12 +24,12 @@ function App() {
       <Container id='appContainer' >
         <Row>
           <Col>
-            <h1>Online Food Store</h1>
+            <h1 id='mainHeader'>Online Food Store</h1>
           </Col>
         </Row>
         <Row>  
           <Col>
-            <p>
+            <p id='introText'>
               Welcome to the online food store. We have a wide variety of products for you to choose from. 
               Feel free to browse our selection of fruits, drinks, dairy products, and bread. 
               We hope you find what you are looking for. moi
@@ -38,7 +38,7 @@ function App() {
         </Row>
           <Row>  
             {products.map((product) => 
-              <Col key={product.id}>
+              <Col key={product.id} className="product-col">
                 <Card imageUrl={product.image.url} title={product.name} price={product.price} />
               </Col>
             )}

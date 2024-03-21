@@ -14,6 +14,8 @@
 | 19.3 | 2   | Tietokannan ja taulujen suunnittelu, tietokantaan taulujen luominen ja yhteyden kokeilu |
 | 19.3 | 1  | Taulujen relaatioiden hiominen |
 | 21.3 | 2  | Backendin rakenteen luominen |
+| 21.3 | 3  | Tietokanta mallien muokkaus, kuvien yhdistäminen tuotteisiin backendin tietokantahauissa, frontendin refaktorointi ja parantelu, virheviestien selvittely |
+
 
 
 
