@@ -13,6 +13,8 @@
 | 18.3 | 2   | Azuren SQL Server Management Studion (SSMS) lataaminen ja käytön harjoittelu, T-SQL perehtyminen |
 | 19.3 | 2   | Tietokannan ja taulujen suunnittelu, tietokantaan taulujen luominen ja yhteyden kokeilu |
 | 19.3 | 1  | Taulujen relaatioiden hiominen |
+| 21.3 | 2  | Backendin rakenteen luominen |
+
 
 
 
