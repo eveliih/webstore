@@ -1,52 +1,22 @@
 const router = require('express').Router()
 
-const { Product } = require('../models')
-/*
+const { Product, Image } = require('../models')
+
 router.get('/', async (req, res) => {
-  const products = await Product.findAll()
+  const products = await Product.findAll({
+    include: {
+      model: Image,
+      attributes: {exclude: ['productId']}
+    }
+  })
   res.json(products)
 })
-*/
 
-
-let fruits = [
-  {
-    id: 1,
-    name: "Banana",
-    url: "https://images.pexels.com/photos/1093038/pexels-photo-1093038.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    price: "15.9/kg"
-  },
-  {
-    id: 2,
-    name: "Orange",
-    url: "https://images.pexels.com/photos/161559/background-bitter-breakfast-bright-161559.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    price: "13/kg"
-
-  },
-  {
-    id: 3,
-    name: "Avocado",
-    url: "https://images.pexels.com/photos/557659/pexels-photo-557659.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    price: "20/kg"
-
-  }
-]
-
-router.get('/', async (request, response) => {
-  try {
-      const products = await Product.findAll();
-  console.log(products)
-  } catch (error) {
-    console.log(error.message);
-  }
-
-  response.json(fruits)
-})
 
 router.get('/:id', (request, response) => {
   const id = Number(request.params.id)
-  const fruit = fruits.find(fruit => fruit.id === id)
-  response.json(fruit)
+  const product = product.find(product => product.id === id)
+  response.json(product)
 })
 
 router.post('/', async (req, res) => {

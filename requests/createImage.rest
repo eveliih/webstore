@@ -1,0 +1,8 @@
+POST http://localhost:3001/api/images
+Content-Type: application/json
+
+{
+  "url": "https://images.pexels.com/photos/1313267/pexels-photo-1313267.jpeg?auto=compress&cs=tinysrgb&w=600",
+  "alt": "Juicy watermelon",
+  "productId": 4
+}

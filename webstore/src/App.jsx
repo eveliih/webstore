@@ -6,14 +6,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
-import fruitService from './services/products';
+import productsService from './services/products';
 
 function App() {
-  const [fruits, setFruits] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fruitService.getAll().then((fruits) => {
-      setFruits(fruits);
+    productsService.getAll().then((products) => {
+      setProducts(products);
     });
   });
 
@@ -37,9 +37,9 @@ function App() {
           </Col>
         </Row>
           <Row>  
-            {fruits.map((fruit) => 
-              <Col key={fruit.id}>
-                <Card imageUrl={fruit.url} title={fruit.name} price={fruit.price} />
+            {products.map((product) => 
+              <Col key={product.id}>
+                <Card imageUrl={product.image.url} title={product.name} price={product.price} />
               </Col>
             )}
           </Row>

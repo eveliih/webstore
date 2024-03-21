@@ -1,0 +1,8 @@
+POST http://localhost:3001/api/fruits
+Content-Type: application/json
+
+{
+  "name": "watermelon",
+  "category": "fruit",
+  "price": "2.99/kg"
+}
