@@ -15,6 +15,8 @@
 | 19.3 | 1  | Taulujen relaatioiden hiominen |
 | 21.3 | 2  | Backendin rakenteen luominen |
 | 21.3 | 3  | Tietokanta mallien muokkaus, kuvien yhdistäminen tuotteisiin backendin tietokantahauissa, frontendin refaktorointi ja parantelu, virheviestien selvittely |
+| 25.3 | 5  | Valikosta klikkaamalla tuotekategorioiden filterointi, tuotesivun ja navigoinnin suunnitteleminen, uusien komponenttien tiedostojen lisays ja rakenteen suunnittelu |
+
 
 
 

@@ -7,8 +7,12 @@ import Col from 'react-bootstrap/Col';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import productsService from './services/products';
-
-
+import ProductsBreadcrumb from './components/ProductsBreadcrumb';
+/* import {
+  BrowserRouter as Router,
+  Routes, Route, Link
+} from 'react-router-dom'
+ */
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -32,8 +36,7 @@ function App() {
     <>
     <div className='top-bar'></div>
     <NavBar setFilter={handleCategoryChange} />
-    
-  
+    <ProductsBreadcrumb  />
       <Container id='appContainer' >
         <Row>
           <Col>
@@ -57,6 +60,10 @@ function App() {
             )}
           </Row>
       </Container>
+      {/* <Routes> 
+         <Route path="/products/:category/:name" element={<Card product={product} />} />
+      </Routes> */}
+
     </>
   )
 }
