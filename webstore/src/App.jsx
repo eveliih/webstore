@@ -8,19 +8,32 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import productsService from './services/products';
 
+
+
 function App() {
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
+ 
   useEffect(() => {
-    productsService.getAll().then((products) => {
+    productsService.getAll().then((products) => { 
       setProducts(products);
+      setFilteredProducts(products);
     });
-  });
+  }, []);
+
+  const handleCategoryChange = (category) => {
+    const productsFilteredByCategory = products.filter(product => product.category.toLowerCase() === category.toLowerCase());
+    setFilteredProducts(productsFilteredByCategory);
+  }
+
 
   return (
     <>
     <div className='top-bar'></div>
-    <NavBar />
+    <NavBar setFilter={handleCategoryChange} />
+    
+  
       <Container id='appContainer' >
         <Row>
           <Col>
@@ -37,7 +50,7 @@ function App() {
           </Col>
         </Row>
           <Row>  
-            {products.map((product) => 
+            {filteredProducts.map((product) => 
               <Col key={product.id} className="product-col">
                 <Card imageUrl={product.image.url} title={product.name} price={product.price} />
               </Col>

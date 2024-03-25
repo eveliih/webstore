@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
 })
 
 
+
 router.get('/:id', (request, response) => {
   const id = Number(request.params.id)
   const product = product.find(product => product.id === id)

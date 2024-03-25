@@ -6,7 +6,11 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function createNavBar() {
+function createNavBar({setFilter}) {
+  const handleItemClick = (eventKey) => {
+    setFilter(eventKey);
+  };
+
   return (
     <Navbar id='custom-nav' className="bg-body-tertiary custom-colors-nav" expand="lg">
       <Container fluid>
@@ -15,40 +19,35 @@ function createNavBar() {
         <Navbar.Collapse className="justify-content-end">
           <Row>
             <Col md="auto">
-          <NavDropdown title="Products" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Fruits</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Drinks
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Dairy</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Bread
-              </NavDropdown.Item>
-            </NavDropdown>
+              <NavDropdown title="Products" id="basic-nav-dropdown" onSelect={handleItemClick}>
+                <NavDropdown.Item eventKey="fruit">Fruits</NavDropdown.Item>
+                <NavDropdown.Item eventKey="drinks">Drinks</NavDropdown.Item>
+                <NavDropdown.Item eventKey="dairy">Dairy</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item eventKey="bread">Bread</NavDropdown.Item>
+              </NavDropdown>
             </Col>
             <Col md="auto">
-          <Form>
-              <Row>
-                <Col xs="auto">
-                  <Form.Control
-                    type="text"
-                    placeholder="Search products..."
-                    className=" mr-sm-2"
-                  />
-                </Col>
-                <Col xs="auto">
-                  <Button type="submit" variant="outline-dark" >Search</Button>
-                </Col>
-              </Row>
-      </Form>
-      </Col>
-      <Col md="auto" >
-          <Navbar.Text id='sign-in-color'>
-            Signed in as: <a href="#login" id='sign-in-color'>Mark Otto</a>
-          </Navbar.Text>
-      </Col>
-
+              <Form>
+                <Row>
+                  <Col xs="auto">
+                    <Form.Control
+                      type="text"
+                      placeholder="Search products..."
+                      className=" mr-sm-2"
+                    />
+                  </Col>
+                  <Col xs="auto">
+                    <Button type="submit" variant="outline-dark" >Search</Button>
+                  </Col>
+                </Row>
+              </Form>
+            </Col>
+            <Col md="auto" >
+              <Navbar.Text id='sign-in-color'>
+                Signed in as: <a href="#login" id='sign-in-color'>Mark Otto</a>
+              </Navbar.Text>
+            </Col>
           </Row>
         </Navbar.Collapse>
       </Container>
