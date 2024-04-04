@@ -2,8 +2,6 @@ import './App.css'
 import NavBar from './components/NavBar'
 
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import productsService from './services/products';
@@ -40,11 +38,6 @@ function App() {
     <NavBar setFilter={handleCategoryChange} />
     <ProductsBreadcrumb  />
       <Container id='appContainer' >
-        <Row>
-          <Col>
-            <h1 id='mainHeader'>Online Food Store</h1>
-          </Col>
-        </Row>
           <RoutesComponent products={filteredProducts}></RoutesComponent>
       </Container>
   

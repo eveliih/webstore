@@ -18,6 +18,8 @@
 | 25.3 | 5  | Valikosta klikkaamalla tuotekategorioiden filterointi, tuotesivun ja navigoinnin suunnitteleminen, uusien komponenttien tiedostojen lisays ja rakenteen suunnittelu |
 | 4.4 | 1  | Azuressa pyörivän sovelluksen hitauden selvittäminen, Tietokannan päivittäminen; tuotteelle valmistusmaa, ainesosat ja valmistaja|
 | 4.4 | 1  | Routejen luominen ja navigointi tuotteen omalle sivulle tuotetta klikkaamalla|
+| 4.4 | 1  | Routejen hiominen, tilan hallintaratkaisun suunnittelu|
+
 
 
 

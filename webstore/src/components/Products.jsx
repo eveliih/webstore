@@ -9,6 +9,11 @@ const ProductList = ({ products }) => {
   return (
     <>  
     <Row>
+          <Col>
+            <h1 id='mainHeader'>Online Food Store</h1>
+          </Col>
+        </Row>
+    <Row>
      <Col>
             <p id='introText'>
               Welcome to the online food store. We have a wide variety of products for you to choose from. 
@@ -20,7 +25,10 @@ const ProductList = ({ products }) => {
      <Row>
             {products.map((product) => 
               <Col key={product.id} className="product-col">
-                <Link to={`/products/${product.category}/${product.name}`}>
+                <Link to={{
+                 pathname: `/products/${product.id}`,
+                 state: { product }
+            }}>
                   <Card imageUrl={product.image.url} title={product.name} price={product.price} />
                 </Link>
               </Col>
