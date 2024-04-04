@@ -1,0 +1,39 @@
+import React from 'react';
+import {  Col, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import Card from './Card'; // Assuming Card is a custom component
+
+import PropTypes from 'prop-types';
+
+const ProductList = ({ products }) => {
+  return (
+    <>  
+    <Row>
+     <Col>
+            <p id='introText'>
+              Welcome to the online food store. We have a wide variety of products for you to choose from. 
+              Feel free to browse our selection of fruits, drinks, dairy products, and bread. 
+              We hope you find what you are looking for. moi
+            </p>
+          </Col>
+    </Row>
+     <Row>
+            {products.map((product) => 
+              <Col key={product.id} className="product-col">
+                <Link to={`/products/${product.category}/${product.name}`}>
+                  <Card imageUrl={product.image.url} title={product.name} price={product.price} />
+                </Link>
+              </Col>
+            )}
+
+    </Row>
+          </>
+  );
+};
+
+ProductList.propTypes = {
+  products: PropTypes.array.isRequired,
+};
+
+
+export default ProductList;
