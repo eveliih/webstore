@@ -28,12 +28,12 @@ Product.init({
   },
   ingredients: {
     type: DataTypes.TEXT,
-    allowNull: false,
+    allowNull: true,
     field: 'Ingredients'
   },
     origin: {
     type: DataTypes.TEXT,
-    allowNull: false,
+    allowNull: true,
     field: 'Origin'
   }
 }, {
