@@ -9,8 +9,11 @@ const product = useSelector(state => state.products.find(product => product.id =
   return(
     <div>
       <h1>{product.name}</h1>
-      <p>{}</p>
-      <p>{product.price}</p>
+       <p>Price: {product.price}</p>
+      <p>Ingredients: {product.ingredients}</p>
+      <p>Origin: {product.origin}</p>
+
+     
       <img id= "productDetailsImage" src={product.image.url} alt={product.name} />
     </div>
   );

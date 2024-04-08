@@ -25,6 +25,16 @@ Product.init({
     type: DataTypes.TEXT,
     allowNull: false,
     field: 'Price'
+  },
+  ingredients: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+    field: 'Ingredients'
+  },
+    origin: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+    field: 'Origin'
   }
 }, {
   sequelize,
