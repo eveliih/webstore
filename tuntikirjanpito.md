@@ -19,6 +19,8 @@
 | 4.4 | 1  | Azuressa pyörivän sovelluksen hitauden selvittäminen, Tietokannan päivittäminen; tuotteelle valmistusmaa, ainesosat ja valmistaja|
 | 4.4 | 1  | Routejen luominen ja navigointi tuotteen omalle sivulle tuotetta klikkaamalla|
 | 4.4 | 1  | Routejen hiominen, tilan hallintaratkaisun suunnittelu|
+| 8.4 | 2  | Tilan hallinta reduxin avulla ja tarvittava refaktorointi|
+
 
 
 

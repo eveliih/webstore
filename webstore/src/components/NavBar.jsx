@@ -23,6 +23,7 @@ const CreateNavBar = () => {
           <Row>
             <Col md="auto">
               <NavDropdown title="Products" id="basic-nav-dropdown" onSelect={handleItemClick}>
+                <NavDropdown.Item eventKey="">All products</NavDropdown.Item>
                 <NavDropdown.Item eventKey="fruit">Fruits</NavDropdown.Item>
                 <NavDropdown.Item eventKey="drinks">Drinks</NavDropdown.Item>
                 <NavDropdown.Item eventKey="dairy">Dairy</NavDropdown.Item>
