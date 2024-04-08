@@ -1,11 +1,12 @@
 import React from 'react';
 import {  Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Card from './Card'; // Assuming Card is a custom component
+import Card from './Card'; 
+import { useSelector } from 'react-redux';
 
-import PropTypes from 'prop-types';
 
-const ProductList = ({ products }) => {
+const ProductList = () => {
+   const products = useSelector(state => state.products)
   return (
     <>  
     <Row>
@@ -38,10 +39,5 @@ const ProductList = ({ products }) => {
           </>
   );
 };
-
-ProductList.propTypes = {
-  products: PropTypes.array.isRequired,
-};
-
 
 export default ProductList;

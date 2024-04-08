@@ -1,10 +1,11 @@
 import { Route, Routes } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import ProductDetails from './ProductDetails';
-import PropTypes from 'prop-types';
 import Products from './Products'; 
 
-const RoutesComponent = ({ products }) => {
+const RoutesComponent = () => {
 
+ const products = useSelector(state => state.products)
   return (
     <Routes>
       <Route path="/products/:id" element={<ProductDetails products={products} />} />
@@ -13,9 +14,5 @@ const RoutesComponent = ({ products }) => {
   )
 }
 
-
-RoutesComponent.propTypes = {
-  products: PropTypes.array.isRequired
-}
 
 export default RoutesComponent
