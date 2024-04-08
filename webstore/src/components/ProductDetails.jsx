@@ -1,16 +1,17 @@
-import { useParams} from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
 
-function CreateProductDetails(){
- 
-  const id = useParams().id
-  console.log(id);
+const CreateProductDetails =() =>{
+const selectedProductId = useSelector(state => state.selectedProduct);
+const product = useSelector(state => state.products.find(product => product.id === selectedProductId));
+
+
   return(
     <div>
-      {/* <h1>{product.name}</h1>
-      <p>{product.description}</p>
+      <h1>{product.name}</h1>
+      <p>{}</p>
       <p>{product.price}</p>
-      <img src={product.image.url} alt={product.name} /> */}
+      <img id= "productDetailsImage" src={product.image.url} alt={product.name} />
     </div>
   );
 }

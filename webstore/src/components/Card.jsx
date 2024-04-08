@@ -1,19 +1,23 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-
 import PropTypes from 'prop-types';
+import { setProduct } from '../reducers/selectedProductReducer';
+import { useDispatch } from 'react-redux'
 
 CardComponent.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 function CardComponent(props) {
-  const { imageUrl, title, price } = props;
+  const { imageUrl, title, price, id } = props;
+ const dispatch = useDispatch()
 
   const handleCardClick = () => {
-    console.log('Card clicked');
+    dispatch(setProduct(id));
+
   };
 
   return (

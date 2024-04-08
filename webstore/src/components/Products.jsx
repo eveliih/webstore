@@ -34,10 +34,9 @@ const ProductList = () => {
             {products.map((product) => 
               <Col key={product.id} className="product-col">
                 <Link to={{
-                 pathname: `/products/${product.id}`,
-                 state: { product }
+                 pathname: `/products/${product.id}`
             }}>
-                  <Card imageUrl={product.image.url} title={product.name} price={product.price} />
+                  <Card imageUrl={product.image.url} title={product.name} price={product.price} id={product.id}/>
                 </Link>
               </Col>
             )}

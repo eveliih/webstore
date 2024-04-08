@@ -7,12 +7,6 @@ const productSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    setClickedProduct: (state, action) => {
-      const { id } = action.payload;
-      return state.map(product =>
-        product.id !== id ? product : { ...product, clicked: true }
-      );
-    },
     setProducts: (state, action) => {
       const { products } = action.payload;
       return products;
@@ -20,7 +14,7 @@ const productSlice = createSlice({
   },
 });
 
-export const { setClickedProduct, setProducts } = productSlice.actions;
+export const { setProducts } = productSlice.actions;
 
 export const initializeProducts = () => {
   return async dispatch => {
