@@ -5,10 +5,13 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useDispatch } from 'react-redux'
+import { setFilter } from '../reducers/filterReducer'
 
-function createNavBar({setFilter}) {
+const CreateNavBar = () => {
+  const dispatch = useDispatch()
   const handleItemClick = (eventKey) => {
-    setFilter(eventKey);
+     dispatch(setFilter(eventKey))
   };
 
   return (
@@ -55,4 +58,5 @@ function createNavBar({setFilter}) {
   );
 }
 
-export default createNavBar;
+
+export default CreateNavBar;

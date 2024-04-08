@@ -1,44 +1,32 @@
-import productsService from '../services/products'
+import { createSlice } from '@reduxjs/toolkit';
+import productsService from '../services/products';
 
+const initialState = [];
 
-const initialState = []
- 
-const reducer = (state = initialState, action) => {
-  switch(action.type){
-case 'SET':
-  return action.data.products
-  
-case 'SET_CLICKED_PRODUCT':
+const productSlice = createSlice({
+  name: 'products',
+  initialState,
+  reducers: {
+    setClickedProduct: (state, action) => {
+      const { id } = action.payload;
       return state.map(product =>
-        product.id !== action.data.id ? product : { ...product, clicked: true }
-      )
+        product.id !== id ? product : { ...product, clicked: true }
+      );
+    },
+    setProducts: (state, action) => {
+      const { products } = action.payload;
+      return products;
+    },
+  },
+});
 
-    default:
-      return state 
-  }
-}
-
-export const setClickedProduct = (id) => {
-  return {
-    type: 'SET_CLICKED_PRODUCT',
-    data: { id }
-  }
-}
-
-export const setProducts = (products) => {
-  return {
-    type: 'SET',
-    data: { products }
-  }
-}
+export const { setClickedProduct, setProducts } = productSlice.actions;
 
 export const initializeProducts = () => {
   return async dispatch => {
-    const products = await productsService.getAll()
-    dispatch(setProducts(products))
-  }
-}
+    const products = await productsService.getAll();
+    dispatch(setProducts({ products }));
+  };
+};
 
-
-
-export default reducer
+export default productSlice.reducer;
