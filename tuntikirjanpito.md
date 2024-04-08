@@ -20,6 +20,8 @@
 | 4.4 | 1  | Routejen luominen ja navigointi tuotteen omalle sivulle tuotetta klikkaamalla|
 | 4.4 | 1  | Routejen hiominen, tilan hallintaratkaisun suunnittelu|
 | 8.4 | 2  | Tilan hallinta reduxin avulla ja tarvittava refaktorointi|
+| 8.4 | 2  | Tuotesivun refaktorointi, muutokset backendiin, deploy ongelman selvittäminen |
+
 
 
 
