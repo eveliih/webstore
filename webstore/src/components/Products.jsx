@@ -7,8 +7,8 @@ import { useSelector } from 'react-redux';
 
 const ProductList = () => {
 
-   const products = useSelector(({ filter,  products }) => {
-  console.log('filter', filter);
+  const products = useSelector(({ filter,  products }) => {
+ 
     return filter === ''
     ? products
     : products.filter(product => product.category.toLowerCase() === filter.toLowerCase());
