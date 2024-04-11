@@ -29,8 +29,6 @@ jobs:
         env:
           VITE_APP_BASE_URL: /api/products
       
-      - name: Copy web.config to dist directory
-        run: cp web.config ./dist/
 
       - name: Zip artifact for deployment
         run: |
