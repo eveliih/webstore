@@ -21,6 +21,7 @@
 | 4.4 | 1  | Routejen hiominen, tilan hallintaratkaisun suunnittelu|
 | 8.4 | 2  | Tilan hallinta reduxin avulla ja tarvittava refaktorointi|
 | 8.4 | 2  | Tuotesivun refaktorointi, muutokset backendiin, deploy ongelman selvittäminen |
+| 11.4 | 4  | Yritys korjata deploy version routejen päivitysongelmaa ja ymmärtää web.config tiedostoa |
 
 
 

@@ -28,6 +28,7 @@ jobs:
           npm run test --if-present
         env:
           VITE_APP_BASE_URL: /api/products
+      
 
       - name: Zip artifact for deployment
         run: |
@@ -47,7 +48,7 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
+      id-token: write 
 
     steps:
       - name: Download artifact from build job
