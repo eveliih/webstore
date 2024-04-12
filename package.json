@@ -7,7 +7,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "build:ui": "cd ./webstore/ && npm install && npm run build  && copy .\\web.config .\\dist && xcopy /I/E dist ..\\dist",
-    "build:ui:ubuntu": "rm -rf dist && cd ./webstore/ && npm install && npm run build && cp ./web.config ./dist && cp -r dist ../" ,
+    "build:ui:ubuntu": "rm -rf dist && cd ./webstore/ && npm install && npm run build && cp -r dist ../" ,
     "test": "echo \" no test specified\" "
   },
   "author": "Eveliina",
