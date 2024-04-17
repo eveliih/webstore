@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
-function BreadcrumbExample() {
+function ProductsBreadcrumb() {
   const location = useLocation();
   let pathnames = location.pathname.split('/').filter(x => x);
 
@@ -24,4 +24,4 @@ function BreadcrumbExample() {
   );
 }
 
-export default BreadcrumbExample;
+export default ProductsBreadcrumb;
