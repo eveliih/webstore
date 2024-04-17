@@ -3,14 +3,14 @@ import ProductDetails from './ProductDetails';
 import Products from './Products'; 
 
 const RoutesComponent = () => {
-
   return (
     <Routes>
-      <Route path="/products/:id" element={<ProductDetails />} />
+      <Route path="/:category/:name/:id" element={<ProductDetails />} />
+      <Route path="/:category" element={<Products/>} />
+      <Route path="/products" element={<Products/>} />
       <Route path="/" element={<Products/>} />
     </Routes>
   )
 }
-
 
 export default RoutesComponent

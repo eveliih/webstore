@@ -3,16 +3,20 @@ import {  Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Card from './Card'; 
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 
 const ProductList = () => {
 
-  const products = useSelector(({ filter,  products }) => {
- 
-    return filter === ''
-    ? products
-    : products.filter(product => product.category.toLowerCase() === filter.toLowerCase());
-  })
+  const { category } = useParams();
+
+  const products = useSelector(({ filter, products }) => {
+    return products.filter(product => {
+      const matchesFilter = filter === '' || product.category.toLowerCase() === filter.toLowerCase();
+      const matchesCategory = category === undefined || product.category.toLowerCase() === category.toLowerCase();
+      return matchesFilter && matchesCategory;
+    });
+  });
   
   return (
     <>  
@@ -34,7 +38,7 @@ const ProductList = () => {
             {products.map((product) => 
               <Col key={product.id} className="product-col">
                 <Link to={{
-                 pathname: `/products/${product.id}`
+                 pathname: `/${product.category}/${product.name}/${product.id}`
             }}>
                   <Card imageUrl={product.image.url} title={product.name} price={product.price} id={product.id}/>
                 </Link>

@@ -7,17 +7,21 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useDispatch } from 'react-redux'
 import { setFilter } from '../reducers/filterReducer'
+import { useNavigate } from 'react-router-dom';
 
 const CreateNavBar = () => {
   const dispatch = useDispatch()
+   const navigate =  useNavigate()
+
   const handleItemClick = (eventKey) => {
      dispatch(setFilter(eventKey))
+      navigate(`/${eventKey}`)
   };
 
   return (
     <Navbar id='custom-nav' className="bg-body-tertiary custom-colors-nav" expand="lg">
       <Container fluid>
-        <Navbar.Brand id='brand-col' href="#home">FoodOnline</Navbar.Brand>
+        <Navbar.Brand id='brand-col' href="/">FoodOnline</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Row>
