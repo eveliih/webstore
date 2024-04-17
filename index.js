@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path');
 const app = express()
 const cors = require('cors')
 app.use(cors())
@@ -16,6 +17,10 @@ app.use(express.json())
 
 app.use('/api/products', productsRouter)
 app.use('/api/images', imagesRouter)
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+});
 
 const start = async () => {
   await connectToDatabase()
