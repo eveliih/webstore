@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom';
 const CreateProductDetails = () => {
   const { id } = useParams();
   const product = useSelector(state => state.products.find(product => product.id === Number(id)));
-  const isLoading = useSelector(state => state.isLoading);
+  
 
-  if (isLoading) {
+  if (product === undefined) {
     return <div>Loading...</div>;
   }
 
