@@ -24,6 +24,7 @@
 | 11.4 | 4  | Yritys korjata deploy version routejen päivitysongelmaa ja ymmärtää web.config tiedostoa |
 | 13.4 | 2  | Yritys korjata deployta |
 | 17.4 | 5  | Deploy version navigoinnin korjaus, breadcrumbin toimintaan laittaminen ja navigoinnin refaktorointi |
+| 22.4 | 3  | Refaktorointia ja testien työstämistä |
 
 
 
