@@ -25,6 +25,7 @@ jobs:
         run: |
           npm install
           npm run build:ui:ubuntu --if-present
+          cd ./webstore
           npm run test --if-present
         env:
           VITE_APP_BASE_URL: /api/products
