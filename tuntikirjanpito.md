@@ -26,6 +26,8 @@
 | 17.4 | 5  | Deploy version navigoinnin korjaus, breadcrumbin toimintaan laittaminen ja navigoinnin refaktorointi |
 | 22.4 | 3  | Refaktorointia ja testien työstämistä |
 | 26.4 | 1  | Testeihin perehtyminen, uusi filteröinnin testaus testi |
+| 29.4 | 2  | Lisää eslint ja konfiguroi toimivaksi |
+
 
 
 

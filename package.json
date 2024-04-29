@@ -7,8 +7,10 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "build:ui": "cd ./webstore/ && npm install && npm run build  && copy .\\web.config .\\dist && xcopy /I/E dist ..\\dist",
-    "build:ui:ubuntu": "rm -rf dist && cd ./webstore/ && npm install && npm run build && cp -r dist ../" ,
-    "test": "echo \" no test specified\" "
+    "build:ui:ubuntu": "rm -rf dist && cd ./webstore/ && npm install && npm run build && cp -r dist ../",
+    "test": "echo \" no test specified\" ",
+    "lint:backend": "eslint .",
+    "lint:frontend": "eslint ./webstore --ext .js,.jsx"
   },
   "author": "Eveliina",
   "license": "ISC",
@@ -20,6 +22,9 @@
     "tedious": "^18.1.0"
   },
   "devDependencies": {
+    "@stylistic/eslint-plugin-js": "^1.7.2",
+    "eslint": "^9.1.1",
+    "globals": "^15.1.0",
     "nodemon": "^3.1.0"
   }
 }

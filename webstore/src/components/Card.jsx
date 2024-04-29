@@ -17,7 +17,6 @@ function CardComponent(props) {
 
   const handleCardClick = () => {
     dispatch(setProduct(id));
-
   };
 
   return (

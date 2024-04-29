@@ -1,6 +1,6 @@
-import { afterEach } from 'vitest'
-import { cleanup } from '@testing-library/react'
-import '@testing-library/jest-dom/vitest'
+const { afterEach } = require('vitest')
+const { cleanup } = require('@testing-library/react')
+require('@testing-library/jest-dom/vitest')
 
 afterEach(() => {
   cleanup()
