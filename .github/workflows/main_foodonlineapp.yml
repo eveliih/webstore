@@ -17,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Log event name
+        run: echo github.event_name is ${{ github.event_name }}
       - uses: actions/checkout@v4
 
       - name: Set up Node.js version
