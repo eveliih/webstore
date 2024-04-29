@@ -42,7 +42,7 @@ jobs:
           path: release.zip
 
   deploy:
-    if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ''), '#skip') }}
+    if: github.event_name == 'push' 
     runs-on: ubuntu-latest
     needs: build
     environment:
