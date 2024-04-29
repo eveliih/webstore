@@ -27,6 +27,8 @@
 | 22.4 | 3  | Refaktorointia ja testien työstämistä |
 | 26.4 | 1  | Testeihin perehtyminen, uusi filteröinnin testaus testi |
 | 29.4 | 2  | Lisää eslint ja konfiguroi toimivaksi |
+| 29.4 | 3  | Muokkaa workflow, deploy vain pull requestin jälkeen. Käyttäjän lisäys backendiin. Tietokantaan tarvittavat muutokset. |
+
 
 
 
