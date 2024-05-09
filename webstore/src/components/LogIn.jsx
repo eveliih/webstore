@@ -1,6 +1,5 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Notification from './Notification';
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNotification } from '../hooks/index'
@@ -20,7 +19,6 @@ function LoginForm({ setShowLoginForm, setShowRegisterForm }) {
       setPassword('')
       setShowLoginForm(false);
     } catch (e) {
-      console.log("error")
       notifyWith('wrong username or password', 'error')
     }
   }
@@ -55,7 +53,6 @@ function LoginForm({ setShowLoginForm, setShowRegisterForm }) {
       </Button>
     </Form>
     <Button type="button" variant="outline-dark" onClick={openRegisterForm}>Create Account</Button>
-        <Notification/>
     </>
   );
 }

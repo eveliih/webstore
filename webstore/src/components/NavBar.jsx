@@ -13,6 +13,7 @@ import LogIn from './LogIn';
 import { useSelector } from 'react-redux'
 import { clearUser } from '../reducers/userReducer';
 import RegisterForm from './RegisterForm';
+import Notification from './Notification';
 
 const CreateNavBar = () => {
   const dispatch = useDispatch()
@@ -110,6 +111,7 @@ const CreateNavBar = () => {
         </Row>
       </Container>
     )}
+     <Notification/>
     </>
   );
 }
