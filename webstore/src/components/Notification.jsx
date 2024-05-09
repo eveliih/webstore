@@ -3,7 +3,7 @@ import Alert from 'react-bootstrap/Alert'
 
 const Notification = () => {
   const info = useSelector(({ notification }) => notification)
-  if (!info.message) {
+  if (info === undefined || !info.message) {
     return null
   }
 
