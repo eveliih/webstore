@@ -2,7 +2,8 @@ import {configureStore} from '@reduxjs/toolkit'
 import productReducer from './reducers/productReducer'
 import filterReducer from './reducers/filterReducer' 
 import selectedProductReducer from './reducers/selectedProductReducer'
-import notification from './reducers/notification'
+import notification from './reducers/notificationReducer'
+import user from './reducers/userReducer'
 
 
 const store = configureStore({
@@ -10,7 +11,8 @@ const store = configureStore({
     products: productReducer,
     filter: filterReducer,
     selectedProduct: selectedProductReducer,
-    notification: notification
+    notification: notification,
+    user: user
   }
 })
 

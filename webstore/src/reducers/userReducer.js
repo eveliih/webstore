@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import loginService from '../services/login'
 import storageService from '../services/storage'
-import { notify } from './notification'
+import { notify } from './notificationReducer'
 
 const initialState = null
 

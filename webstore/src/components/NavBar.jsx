@@ -10,6 +10,9 @@ import { setFilter } from '../reducers/filterReducer'
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import LogIn from './LogIn';
+import { useSelector } from 'react-redux'
+import { clearUser } from '../reducers/userReducer';
+import RegisterForm from './RegisterForm';
 
 const CreateNavBar = () => {
   const dispatch = useDispatch()
@@ -21,10 +24,19 @@ const CreateNavBar = () => {
   };
 
   const [showLoginForm, setShowLoginForm] = useState(false);
+  const [showRegisterForm, setShowRegisterForm] = useState(false);
+  
+
+  const user = useSelector(({ user }) => user)
 
   const handleLoginClick = () => {
     setShowLoginForm(!showLoginForm);
+    setShowRegisterForm(false);
   };
+
+  const handleLogoutClick = () => {
+    dispatch(clearUser());
+  }
 
   return (
     <>
@@ -60,14 +72,22 @@ const CreateNavBar = () => {
                 </Row>
               </Form>
             </Col>
-             <Col xs="auto">
-                    <Button type="button" variant="outline-dark" onClick={handleLoginClick}>Log in</Button>
-                  </Col>
-            <Col md="auto" >
-              <Navbar.Text id='sign-in-color'>
-                Signed in as: <a href="#login" id='sign-in-color'>Mark Otto</a>
-              </Navbar.Text>
-            </Col>
+              {user ? (
+    <>
+      <Col xs="auto">
+        <Navbar.Text id='sign-in-color'>
+          Signed in as: <a href="#login" id='sign-in-color'>{user.name}</a>
+        </Navbar.Text>
+      </Col>
+      <Col xs="auto">
+        <Button type="button" variant="outline-dark" onClick={handleLogoutClick}>Log out</Button>
+      </Col>
+    </>
+  ) : (
+    <Col xs="auto">
+      <Button type="button" variant="outline-dark" onClick={handleLoginClick}>Log in</Button>
+    </Col>
+  )}
           </Row>
         </Navbar.Collapse>
       </Container>
@@ -76,12 +96,20 @@ const CreateNavBar = () => {
       <Container fluid>
         <Row>
           <Col>
-            <LogIn />
+            <LogIn setShowLoginForm={setShowLoginForm} setShowRegisterForm={setShowRegisterForm}/>
           </Col>
         </Row>
       </Container>
     )}
-   
+   {showRegisterForm && (
+      <Container fluid>
+        <Row>
+          <Col>
+            <RegisterForm setShowRegisterForm={setShowRegisterForm}/>
+          </Col>
+        </Row>
+      </Container>
+    )}
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { notify } from '../reducers/notification'
+import { notify } from '../reducers/notificationReducer'
 
 export const useNotification = () => {
   const dispatch = useDispatch()
