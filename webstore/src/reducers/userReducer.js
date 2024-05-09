@@ -21,6 +21,19 @@ const slice = createSlice({
 
 export const { set, clear } = slice.actions
 
+export const registerUser = (credentials) => {
+  return async dispatch => {
+    try {
+      const user = await loginService.register(credentials)
+      dispatch(notify('Account created successfully! You can now log in.'))
+    } catch (e) {
+      console.log("registeruser error")
+      dispatch(notify('username already taken', 'error'))
+    }
+  }
+
+}
+
 export const loginUser = (credentials) => {
   return async dispatch => {
     try {
@@ -29,7 +42,7 @@ export const loginUser = (credentials) => {
       dispatch(set(user))
       dispatch(notify('welcome!'))
     } catch (e) {
-      console.log("loginuser error")
+      console.log("loginuser error", e)
       dispatch(notify('wrong username or password', 'error'))
     }
   }

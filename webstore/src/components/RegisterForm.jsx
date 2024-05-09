@@ -4,7 +4,7 @@ import Notification from './Notification';
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNotification } from '../hooks/index'
-import { loginUser } from '../reducers/userReducer'
+import { registerUser } from '../reducers/userReducer'
 
 function RegisterForm({ setShowRegisterForm }) {
   const [username, setUsername] = useState('')
@@ -17,6 +17,10 @@ function RegisterForm({ setShowRegisterForm }) {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
+      dispatch(registerUser({ username, name, password }))
+      setUsername('')
+      setPassword('')
+      setName('')
       setShowRegisterForm(false);
     } catch (e) {
       console.log("error")
@@ -56,7 +60,7 @@ function RegisterForm({ setShowRegisterForm }) {
         </Form.Text>
       </Form.Group>
       <Button variant="primary" type="submit">
-        Create Account
+        Register
       </Button>
     </Form>
         <Notification/>

@@ -7,8 +7,8 @@ import { useNotification } from '../hooks/index'
 import { loginUser } from '../reducers/userReducer'
 
 function LoginForm({ setShowLoginForm, setShowRegisterForm }) {
-  const [username, setUsername] = useState('testuser')
-  const [password, setPassword] = useState('salasana1234')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const notifyWith = useNotification()
   const dispatch = useDispatch()
 
