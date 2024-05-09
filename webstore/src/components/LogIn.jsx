@@ -49,7 +49,7 @@ function LoginForm({ setShowLoginForm, setShowRegisterForm }) {
           onChange={({ target }) => setPassword(target.value)}/>
       </Form.Group>
       <Button variant="primary" type="submit">
-        Submit
+        Sign in
       </Button>
     </Form>
     <Button type="button" variant="outline-dark" onClick={openRegisterForm}>Create Account</Button>
