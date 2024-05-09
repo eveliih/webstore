@@ -9,6 +9,7 @@ const login = async (credentials) => {
     return response.data
   } catch (error) {
     console.error(error)
+    throw error
   }
 }
 

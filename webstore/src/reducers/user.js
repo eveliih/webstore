@@ -29,6 +29,7 @@ export const loginUser = (credentials) => {
       dispatch(set(user))
       dispatch(notify('welcome!'))
     } catch (e) {
+      console.log("loginuser error")
       dispatch(notify('wrong username or password', 'error'))
     }
   }

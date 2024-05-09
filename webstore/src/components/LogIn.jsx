@@ -1,5 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Notification from './Notification';
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNotification } from '../hooks/index'
@@ -18,11 +19,13 @@ function LoginForm() {
       setUsername('')
       setPassword('')
     } catch (e) {
+      console.log("error")
       notifyWith('wrong username or password', 'error')
     }
   }
 
   return (
+    <>
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" >
         <Form.Label>Username</Form.Label>
@@ -48,6 +51,8 @@ function LoginForm() {
         Submit
       </Button>
     </Form>
+        <Notification/>
+    </>
   );
 }
 
