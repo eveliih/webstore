@@ -30,6 +30,8 @@
 | 29.4 | 3  | Muokkaa workflow, deploy vain pull requestin jälkeen. Käyttäjän lisäys backendiin. Tietokantaan tarvittavat muutokset. |
 | 30.4 | 3  | Kirjautuminen frontendissä + tarvittavia lisäyksiä backendiin |
 | 9.5 | 6  | Kirjautuminen jatkokehitys, uuden käyttäjän lisääminen, ilmoituksen näyttäminen, kirjautumis ja rekisteröintilomakkeiden näyttäminen oikeaan aikaan, kirjautuneen käyttäjän näyttäminen |
+| 10.5 | 7  | Kirjautumisen parannuksia (salasanan validointi yms), tuotesivun muokkaaminen, css muokkaukset |
+
 
 
 
