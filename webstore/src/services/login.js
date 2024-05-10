@@ -20,8 +20,8 @@ const register = async (newCredentials) => {
     console.log(response.data)
     return response.data
   } catch (error) {
-    console.error(error)
-    throw error
+    console.log(error.response.data.error)
+   throw new Error(error.response.data.error)
   }
 }
 

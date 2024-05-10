@@ -27,8 +27,7 @@ export const registerUser = (credentials) => {
       const user = await loginService.register(credentials)
       dispatch(notify('Account created successfully! You can log in now.'))
     } catch (e) {
-      console.log("registeruser error")
-      dispatch(notify('username already taken', 'error'))
+      dispatch(notify(e.message, 'error'))
     }
   }
 
