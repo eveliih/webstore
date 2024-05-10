@@ -38,16 +38,17 @@ const CreateProductDetails = () => {
          <Col>
         <h1>{product.name}</h1>
         <h2>{product.price}</h2>
-        <div style={{ display: 'flex' }}>
+        <div className="quantity-control">
           <Button variant="light" onClick={decreaseQuantity}>-</Button>
-          <Form.Control className="hide-input-arrows" style={{ width: '50px', textAlign: 'center' }} type="number" min="0" value={quantity} onChange={handleInputChange} />
+          <Form.Control className="hide-input-arrows quantity-input" type="number" min="0" value={quantity} onChange={handleInputChange} />
           <Button variant="light" onClick={increaseQuantity}>+</Button>
         </div>
+        <Button disabled={quantity === 0} className='cart-button'>Add to Cart</Button>
         </Col>
       </Row>
       <Row>
         <Col>
-          <Accordion defaultActiveKey="0">
+          <Accordion defaultActiveKey="0" className="custom-accordion">
             <Accordion.Item eventKey="1">
               <Accordion.Header>Ingredients</Accordion.Header>
               <Accordion.Body>
