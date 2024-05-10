@@ -8,8 +8,8 @@ function ProductsBreadcrumb() {
   pathnames = pathnames.slice(0, pathnames.length - 1);
 
   return (
-    <Breadcrumb>
-      <Breadcrumb.Item href="/">Products</Breadcrumb.Item>
+    <Breadcrumb className='custom-breadcrumb'>
+      <Breadcrumb.Item  href="/">Products</Breadcrumb.Item>
       {pathnames.map((value, index) => {
         const url = `/${pathnames.slice(0, index + 1).join('/')}`;
         const isLast = index === pathnames.length - 1;

@@ -47,27 +47,23 @@ const CreateNavBar = () => {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Row>
-            <Col md="auto">
+            <Col md="auto" className='navbar-item'>
               <NavDropdown title="Products" id="basic-nav-dropdown" onSelect={handleItemClick}>
                 <NavDropdown.Item eventKey="">All products</NavDropdown.Item>
                 <NavDropdown.Item eventKey="fruit">Fruits</NavDropdown.Item>
-                <NavDropdown.Item eventKey="drinks">Drinks</NavDropdown.Item>
-                <NavDropdown.Item eventKey="dairy">Dairy</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item eventKey="bread">Bread</NavDropdown.Item>
               </NavDropdown>
             </Col>
-            <Col md="auto">
+            <Col md="auto" className='navbar-item'>
               <Form>
                 <Row>
-                  <Col xs="auto">
+                  <Col xs="auto" className='navbar-item'>
                     <Form.Control
                       type="text"
                       placeholder="Search products..."
                       className=" mr-sm-2"
                     />
                   </Col>
-                  <Col xs="auto">
+                  <Col xs="auto" className='navbar-item'>
                     <Button type="submit" variant="outline-dark" >Search</Button>
                   </Col>
                 </Row>

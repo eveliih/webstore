@@ -9,6 +9,12 @@
   min-width: 100%;
 }
 
+#custom-container{
+  margin: 1rem 0 !important ;
+  padding: 0 2rem;
+  min-width: 100%;
+}
+
 #root {
   margin: 0px ;
   padding: 0px ;
@@ -37,10 +43,7 @@ html, body {
 .product-col {
   margin-bottom: 1rem; /* Adjust as needed */
 }
-/* #brand-col, #sign-in-color, .navbar-brand, #custom-nav {
-  color: var(--font-color);
 
-} */
 
 #brand-col{
   color: #0F612A;
@@ -92,3 +95,28 @@ html, body {
   background-color: #083517 !important;
   border-color: #083517 !important;
 }
+
+.custom-breadcrumb a {
+  color: #0F612A !important;
+}
+
+.green-button{
+  background-color: #0F612A !important;
+  border-color: #0F612A !important;
+}
+
+.green-button:hover{
+  background-color: #083517 !important;
+  border-color: #083517 !important;
+}
+
+.account-button, .register-button{
+  margin: 1% 0 3% 0 !important;
+}
+
+@media (max-width: 992px) {
+  .navbar-item {
+    margin-bottom: 1rem !important;
+  }
+}
+
