@@ -25,7 +25,9 @@ function App() {
     <div className='top-bar'></div>
     <Router>  
     <NavBar />
-    <ProductsBreadcrumb  />
+    <Container id='custom-container'>
+       <ProductsBreadcrumb  />
+    </Container>
       <Container id='appContainer' >
           <RoutesComponent ></RoutesComponent>
       </Container>

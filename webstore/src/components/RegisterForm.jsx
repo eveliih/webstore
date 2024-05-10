@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNotification } from '../hooks/index'
 import { registerUser } from '../reducers/userReducer'
+import { Container } from 'react-bootstrap';
 
 function RegisterForm({ setShowRegisterForm }) {
   const [username, setUsername] = useState('')
@@ -29,7 +30,7 @@ function RegisterForm({ setShowRegisterForm }) {
   }
 
   return (
-    <>
+    <Container id='custom-container'>
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" >
         <Form.Label>Full Name</Form.Label>
@@ -56,15 +57,15 @@ function RegisterForm({ setShowRegisterForm }) {
           value={password}
           onChange={({ target }) => setPassword(target.value)}/>
            <Form.Text className="text-muted">
-         Password should contain 1-8 characters 
+         The password must be at least 8 characters long and include numbers, uppercase letters and special characters.
         </Form.Text>
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button className='green-button register-button' variant="primary" type="submit">
         Register
       </Button>
     </Form>
         <Notification/>
-    </>
+    </Container>
   );
 }
 
