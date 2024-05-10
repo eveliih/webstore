@@ -56,3 +56,39 @@ html, body {
    width: 16rem;
    height: 16rem;
 }
+
+.quantity-control {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  margin-top: 17%;
+}
+
+.quantity-input {
+  text-align: center;
+}
+
+.hide-input-arrows::-webkit-inner-spin-button,
+.hide-input-arrows::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-accordion{
+  margin-top: 6%;
+}
+.custom-accordion button {
+  background-color: #F5F5F5 !important;
+}
+
+.cart-button{
+  width: 60%;
+  margin-top: 4%;
+  background-color: #0F612A !important;
+  border-color: #0F612A !important;
+}
+
+.cart-button:hover{
+  background-color: #083517 !important;
+  border-color: #083517 !important;
+}
