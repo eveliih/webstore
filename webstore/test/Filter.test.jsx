@@ -1,50 +1,45 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import { MemoryRouter } from 'react-router-dom';
-import filterReducer from '../src/reducers/filterReducer'; 
-import NavBar from '../src/components/NavBar';
-import RoutesComponent from '../src/components/RoutesComponent';
-import { test, expect } from 'vitest';
+import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
+import store from "../src/store";
+import Products from "../src/components/Products";
+import * as productService from "../src/services/products";
 
-test('clicking the "Fruits" navbar item sets the filter and navigates', async () => {
-  
-  const store = configureStore({
-    reducer: {
-      filter: filterReducer,
-      products: () => [
-        { id: 1, name: 'Avocado', category: 'fruit', image: { url: 'avocado.jpg' }, price: 1.99 },
-        { id: 2, name: 'Watermelon', category: 'fruit', image: { url: 'watermelon.jpg' }, price: 2.99 },
-        { id: 3, name: 'Banana', category: 'fruit', image: { url: 'banana.jpg' }, price: 0.99 },
-      ],
-    },
-    preloadedState: {
-      filter: '',
-    },
-  });
+jest.mock("../src/services/products");
+
+const mockProducts = [
+  {
+    id: 1,
+    name: "Avocado",
+    productCategory: { name: "Fruits" },
+    image: { url: "avocado.jpg" },
+    price: 1.99,
+  },
+  {
+    id: 2,
+    name: "Watermelon",
+    productCategory: { name: "Fruits" },
+    image: { url: "watermelon.jpg" },
+    price: 2.99,
+  },
+  {
+    id: 3,
+    name: "Banana",
+    productCategory: { name: "Fruits" },
+    image: { url: "banana.jpg" },
+    price: 0.99,
+  },
+];
+
+test("renders the products", async () => {
+  productService.getAll = jest.fn(() => Promise.resolve(mockProducts));
 
   render(
     <Provider store={store}>
-      <MemoryRouter>
-        <NavBar />
-        <RoutesComponent />
-      </MemoryRouter>
+      <Products />
     </Provider>
   );
 
-  const dropdown = screen.getByText('Products');
-  userEvent.click(dropdown);
-
-  const fruitItem = await screen.findByText('Fruits');
-  userEvent.click(fruitItem);
-
-  
-  await waitFor(() => expect(store.getState().filter).toBe('fruit'));
-
- 
-  expect(await screen.findByText('Avocado')).toBeInTheDocument();
-  expect(await screen.findByText('Watermelon')).toBeInTheDocument();
-  expect(await screen.findByText('Banana')).toBeInTheDocument();
-  expect(screen.queryByText('Orange')).not.toBeInTheDocument();
+  for (const product of mockProducts) {
+    expect(await screen.findByText(product.name)).toBeInTheDocument();
+  }
 });

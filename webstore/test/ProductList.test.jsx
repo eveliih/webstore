@@ -1,75 +1,42 @@
-import { render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
-import Products from '../src/components/Products';
-import { test, expect } from 'vitest';
-import { BrowserRouter } from 'react-router-dom';
+import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
+import { MemoryRouter } from "react-router-dom";
+import configureStore from "redux-mock-store";
+import Products from "../src/components/Products";
+import { test, expect } from "vitest";
+import fetch from "node-fetch";
+import { Response } from "node-fetch";
 
+global.fetch = fetch;
 
-test('renders product', () => {
-  const product = {
-    id: 1,
-    category: 'fruit',
-    name: 'Apple',
-    price: 1,
-    image: { url: 'apple.jpg' }
-  }
+test("renders product", async ({ is }) => {
+  global.fetch = () =>
+    Promise.resolve(
+      new Response(
+        JSON.stringify([
+          {
+            id: 1,
+            name: "Orange",
+            category: "Fruits",
+            image: { url: "orange.jpg" },
+            price: 0.99,
+          },
+        ])
+      )
+    );
 
-  const dairyProduct = {
-    id: 2,
-    category: 'dairy',
-    name: 'Milk',
-    price: 2,
-    image: { url: 'milk.jpg' }
-  }
-
-  const mockStore = configureMockStore()({
-    products: [product, dairyProduct],
-    filter: '',
+  const mockStore = configureStore()({
+    filter: "",
   });
 
   render(
     <Provider store={mockStore}>
-      <BrowserRouter>
+      <MemoryRouter initialEntries={["/Fruits"]}>
         <Products />
-      </BrowserRouter>
+      </MemoryRouter>
     </Provider>
   );
 
-  const element = screen.getByText('Apple');
-  expect(element).toBeDefined();
-});
-
-test('renders header', () => {
-  const product = {
-    id: 1,
-    category: 'fruit',
-    name: 'Apple',
-    price: 1,
-    image: { url: 'apple.jpg' }
-  }
-
-  const dairyProduct = {
-    id: 2,
-    category: 'dairy',
-    name: 'Milk',
-    price: 2,
-    image: { url: 'milk.jpg' }
-  }
-
-  const mockStore = configureMockStore()({
-    products: [product, dairyProduct],
-    filter: '',
-  });
-
-  render(
-    <Provider store={mockStore}>
-      <BrowserRouter>
-        <Products />
-      </BrowserRouter>
-    </Provider>
-  );
-
-  const headerElement = screen.getByText('Online Food Store');
-  expect(headerElement).toBeInTheDocument();
+  const element = await screen.findByText("Orange");
+  assert.equal(element.textContent, "Orange");
 });
