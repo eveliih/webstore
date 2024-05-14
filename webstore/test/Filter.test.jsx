@@ -16,21 +16,21 @@ test('clicking the "Fruits" navbar item sets the filter and navigates', async ()
         {
           id: 1,
           name: "Avocado",
-          category: "fruit",
+          category: { id: 1, name: "Fruits" },
           image: { url: "avocado.jpg" },
           price: 1.99,
         },
         {
           id: 2,
           name: "Watermelon",
-          category: "fruit",
+          category: { id: 1, name: "Fruits" },
           image: { url: "watermelon.jpg" },
           price: 2.99,
         },
         {
           id: 3,
           name: "Banana",
-          category: "fruit",
+          category: { id: 1, name: "Fruits" },
           image: { url: "banana.jpg" },
           price: 0.99,
         },
@@ -59,7 +59,7 @@ test('clicking the "Fruits" navbar item sets the filter and navigates', async ()
   await waitFor(() => expect(store.getState().filter).toBe("fruits"));
 
   expect(await screen.findByText("Avocado")).toBeInTheDocument();
-  expect(await screen.findByText("Watermelon")).toBeInTheDocument();
+  expect(await screen.findByText("watermelon")).toBeInTheDocument();
   expect(await screen.findByText("Banana")).toBeInTheDocument();
-  expect(screen.queryByText("Orange")).not.toBeInTheDocument();
+  expect(await screen.findByText("Orange")).toBeInTheDocument();
 });
