@@ -11,8 +11,10 @@ const ProductList = () => {
   const { category } = useParams();
   const filter = useSelector(getFilter);
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     productService.getAll(category).then((fetchedProducts) => {
       const filteredProducts = fetchedProducts.filter((product) => {
         const matchesFilter =
@@ -22,6 +24,7 @@ const ProductList = () => {
         return matchesFilter;
       });
       setProducts(filteredProducts);
+      setIsLoading(false);
     });
   }, [category, filter]);
 
@@ -43,7 +46,11 @@ const ProductList = () => {
         </Col>
       </Row>
       <Row>
-        {products.length > 0 ? (
+        {isLoading ? (
+          <Col>
+            <p>Loading products...</p>
+          </Col>
+        ) : products.length > 0 ? (
           products.map((product) => {
             return (
               <Col key={product.id} className="product-col">
