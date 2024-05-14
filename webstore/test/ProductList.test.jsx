@@ -3,8 +3,28 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import configureStore from "redux-mock-store";
 import Products from "../src/components/Products";
+import { test, expect } from "vitest";
+import fetch from "node-fetch";
+import { Response } from "node-fetch";
 
-test("renders product", async () => {
+global.fetch = fetch;
+
+test("renders product", async ({ is }) => {
+  global.fetch = () =>
+    Promise.resolve(
+      new Response(
+        JSON.stringify([
+          {
+            id: 1,
+            name: "Orange",
+            category: "Fruits",
+            image: { url: "orange.jpg" },
+            price: 0.99,
+          },
+        ])
+      )
+    );
+
   const mockStore = configureStore()({
     filter: "",
   });
@@ -18,5 +38,5 @@ test("renders product", async () => {
   );
 
   const element = await screen.findByText("Orange");
-  expect(element).toBeInTheDocument();
+  assert.equal(element.textContent, "Orange");
 });
