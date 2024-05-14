@@ -6,6 +6,7 @@ const sequelize = new Sequelize(DATABASE_URL, {
   dialectOptions: {
     options: {
       encrypt: true, 
+      requestTimeout: 30000
     },
   },
 });
@@ -16,7 +17,7 @@ const connectToDatabase = async () => {
     await sequelize.authenticate()
     console.log('database connected')
   } catch (err) {
-    console.log('connecting database failed' + err)
+    console.log('connecting database failed ' + err)
     return process.exit(1)
   }
 

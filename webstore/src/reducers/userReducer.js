@@ -39,10 +39,14 @@ export const loginUser = (credentials) => {
       const user = await loginService.login(credentials)
       storageService.saveUser(user)
       dispatch(set(user))
-      dispatch(notify('welcome!'))
+      dispatch(notify('Welcome ' + user.name +'!'))
     } catch (e) {
-      console.log("loginuser error", e)
-      dispatch(notify('wrong username or password', 'error'))
+      if (e.response && e.response.status === 401) {
+        dispatch(notify('Wrong username or password.', 'error'))
+      } else {
+        dispatch(notify('Login failed. Please try again', 'error'))
+      }
+      console.log("loginuser error ", e)
     }
   }
 }
