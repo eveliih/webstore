@@ -1,4 +1,6 @@
 const { Model, DataTypes } = require('sequelize')
+const ProductCategory = require('./productCategory')
+
 
 const { sequelize } = require('../util/db')
 
@@ -16,10 +18,14 @@ Product.init({
     allowNull: false,
     field: 'Product_Name'
   },
-  category: {
-    type: DataTypes.TEXT,
+  categoryId: {
+    type: DataTypes.INTEGER,
     allowNull: false,
-    field: 'Category'
+    field: 'Category_Id',
+    references: {
+      model: ProductCategory,
+      key: 'id'
+    }
   },
   price: {
     type: DataTypes.TEXT,

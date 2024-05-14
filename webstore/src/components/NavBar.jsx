@@ -20,6 +20,7 @@ const CreateNavBar = () => {
   const navigate =  useNavigate()
 
   const handleItemClick = (eventKey) => {
+    console.log(eventKey)
      dispatch(setFilter(eventKey))
       navigate(`/${eventKey}`)
   };
@@ -50,7 +51,7 @@ const CreateNavBar = () => {
             <Col md="auto" className='navbar-item'>
               <NavDropdown title="Products" id="basic-nav-dropdown" onSelect={handleItemClick}>
                 <NavDropdown.Item eventKey="">All products</NavDropdown.Item>
-                <NavDropdown.Item eventKey="fruit">Fruits</NavDropdown.Item>
+                <NavDropdown.Item eventKey="fruits">Fruits</NavDropdown.Item>
               </NavDropdown>
             </Col>
             <Col md="auto" className='navbar-item'>
