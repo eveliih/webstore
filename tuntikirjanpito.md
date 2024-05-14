@@ -31,6 +31,7 @@
 | 30.4 | 3  | Kirjautuminen frontendissä + tarvittavia lisäyksiä backendiin |
 | 9.5 | 6  | Kirjautuminen jatkokehitys, uuden käyttäjän lisääminen, ilmoituksen näyttäminen, kirjautumis ja rekisteröintilomakkeiden näyttäminen oikeaan aikaan, kirjautuneen käyttäjän näyttäminen |
 | 10.5 | 7  | Kirjautumisen parannuksia (salasanan validointi yms), tuotesivun muokkaaminen, css muokkaukset |
+| 14.5 | 4  | Tietokannan muokkaukset, virheiden käsittelyn ja ilmoitusten parantelu, testien korjaaminen muutosten jälkeen (ei onnistunut vielä...) |
 
 
 
