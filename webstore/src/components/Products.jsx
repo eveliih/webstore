@@ -17,7 +17,8 @@ const ProductList = () => {
       const filteredProducts = fetchedProducts.filter((product) => {
         const matchesFilter =
           filter === "" ||
-          product.productCategory.name.toLowerCase() === filter.toLowerCase();
+          product.productCategory.name.toLowerCase() === filter.toLowerCase() ||
+          product.name.toLowerCase().startsWith(filter.toLowerCase());
         return matchesFilter;
       });
       setProducts(filteredProducts);
@@ -42,24 +43,33 @@ const ProductList = () => {
         </Col>
       </Row>
       <Row>
-        {products.map((product) => {
-          return (
-            <Col key={product.id} className="product-col">
-              <Link
-                to={{
-                  pathname: `/${product.productCategory.name}/${product.name}/${product.id}`,
-                }}
-              >
-                <Card
-                  imageUrl={product.image.url}
-                  title={product.name}
-                  price={product.price}
-                  id={product.id}
-                />
-              </Link>
-            </Col>
-          );
-        })}
+        {products.length > 0 ? (
+          products.map((product) => {
+            return (
+              <Col key={product.id} className="product-col">
+                <Link
+                  to={{
+                    pathname: `/${product.productCategory.name}/${product.name}/${product.id}`,
+                  }}
+                >
+                  <Card
+                    imageUrl={product.image.url}
+                    title={product.name}
+                    price={product.price}
+                    id={product.id}
+                  />
+                </Link>
+              </Col>
+            );
+          })
+        ) : (
+          <Col>
+            <p>
+              No products found matching your search term. Please try a
+              different keyword.
+            </p>
+          </Col>
+        )}
       </Row>
     </>
   );
