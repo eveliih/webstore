@@ -13,7 +13,7 @@ const imagesRouter = require("./controllers/images");
 const usersRouter = require("./controllers/users");
 const loginRouter = require("./controllers/login");
 const cartRouter = require("./controllers/cart");
-const cartItemRouter = require("./controllers/cartItem");
+const cartItemRouter = require("./controllers/cartItems");
 
 app.use(express.json());
 
