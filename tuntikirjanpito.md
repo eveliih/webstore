@@ -34,7 +34,7 @@
 | 14.5 | 5  | Tietokannan muokkaukset, virheiden käsittelyn ja ilmoitusten parantelu, testien korjaaminen muutosten jälkeen (ei onnistunut vielä...), hakutoiminnallisuuden lisääminen |
 | 15.5 | 2  | Tuote testien tekeminen backendiin |
 | 16.5 | 3  | Testit frontendiin |
-| 17.5 | 1  | GitHub Actions workflown muokkaaminen, ympäristömuuttujien lisääminen testejä varten githubiin, deploy vaiheen optimointi |
+| 17.5 | 4  | GitHub Actions workflown muokkaaminen, ympäristömuuttujien lisääminen testejä varten githubiin, deploy vaiheen optimointi, tietokannan muutokset, uudet modelit ja controllerit ostoskoria varten |
 
 
 
