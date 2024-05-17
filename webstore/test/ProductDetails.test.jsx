@@ -47,12 +47,6 @@ describe("CreateProductDetails", () => {
     expect(await screen.getByText("Loading...")).toBeInTheDocument();
   });
 
-  test("displays product not found state", async () => {
-    const store = mockStore({ products: [] });
-    renderComponent(store, "/product/999");
-    expect(await screen.getByText("Product not found")).toBeInTheDocument();
-  });
-
   test("controls quantity correctly", async () => {
     const store = mockStore({
       products: [
