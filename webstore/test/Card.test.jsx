@@ -8,7 +8,7 @@ const store = mockStore({
   selectedProduct: {},
 });
 
-test.only("renders content", () => {
+test("renders content", () => {
   const product = {
     id: 1,
     name: "Avocado",
