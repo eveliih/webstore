@@ -35,6 +35,8 @@
 | 15.5 | 2  | Tuote testien tekeminen backendiin |
 | 16.5 | 3  | Testit frontendiin |
 | 17.5 | 4  | GitHub Actions workflown muokkaaminen, ympäristömuuttujien lisääminen testejä varten githubiin, deploy vaiheen optimointi, tietokannan muutokset, uudet modelit ja controllerit ostoskoria varten |
+| 18.5 | 3  | Ostoskorin työstöä. |
+
 
 
 

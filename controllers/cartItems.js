@@ -3,6 +3,7 @@ const { CartItem } = require("../models");
 
 cartItemsRouter.post("/", async (request, response) => {
   const { cart_id, product_id, quantity } = request.body;
+  console.log(request.body);
   try {
     const newItem = await CartItem.create({
       cart_id,
