@@ -35,7 +35,7 @@ const CreateProductDetails = () => {
       return;
     }
 
-    const cart = await cartService.getCart(user.id);
+    let cart = await cartService.getCart(user.id);
     if (!cart) {
       cart = await cartService.addCart(user.id, product.price * quantity);
       // update user's cart in state?

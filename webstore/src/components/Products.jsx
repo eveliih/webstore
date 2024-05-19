@@ -3,30 +3,28 @@ import { Col, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import Card from "./Card";
 import { useSelector } from "react-redux";
-import productService from "../services/products"; // Import your service
 
 const getFilter = (state) => state.filter;
+const getProducts = (state) => state.products;
 
 const ProductList = () => {
   const { category } = useParams();
   const filter = useSelector(getFilter);
+  const allProducts = useSelector(getProducts);
   const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
-    productService.getAll(category).then((fetchedProducts) => {
-      const filteredProducts = fetchedProducts.filter((product) => {
-        const matchesFilter =
-          filter === "" ||
-          product.productCategory.name.toLowerCase() === filter.toLowerCase() ||
-          product.name.toLowerCase().startsWith(filter.toLowerCase());
-        return matchesFilter;
-      });
-      setProducts(filteredProducts);
-      setIsLoading(false);
+    const filteredProducts = allProducts.filter((product) => {
+      const matchesFilter =
+        filter === "" ||
+        product.productCategory.name.toLowerCase() === filter.toLowerCase() ||
+        product.name.toLowerCase().startsWith(filter.toLowerCase());
+      return matchesFilter;
     });
-  }, [category, filter]);
+    setProducts(filteredProducts);
+    setIsLoading(false);
+  }, [category, filter, allProducts]);
 
   return (
     <>
@@ -69,14 +67,14 @@ const ProductList = () => {
               </Col>
             );
           })
-        ) : (
+        ) : filter !== "" ? (
           <Col>
             <p>
               No products found matching your search term. Please try a
               different keyword.
             </p>
           </Col>
-        )}
+        ) : null}
       </Row>
     </>
   );
