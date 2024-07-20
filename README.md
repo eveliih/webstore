@@ -17,7 +17,7 @@ Currently this project is on a summer holiday. To be continued in the Autumn 202
 │ ├── app.js 
 │ ├── index.js 
 │ ├── package.json
-│ └── /frontend
+│ └── /webstore (frontend)
 │   ├── /src
 │     ├── /assets 
 │     ├── /components 
