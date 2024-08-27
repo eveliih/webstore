@@ -37,7 +37,7 @@ jobs:
           VITE_REGISTER_URL: /api/users
           VITE_CART_URL: /api/cart
           VITE_CARTITEM_URL: /api/cartItem
-          TEST_DATABASE_URL: ${{ secrets.TEST_DATABASE_URL }}
+    
 
 
       - name: Zip artifact for deployment
@@ -56,6 +56,8 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    permissions:
+      id-token: write
     
     steps:
       - name: Download artifact from build job
@@ -65,12 +67,19 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6FC6E36A06E5437BBA220646AA6AD2AE }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_961F7C40868A411FA2C870653752940E }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A9D906C76E4D4A0985A292D995D74871 }}
       
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
           app-name: 'foodonline'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A0E339A8BC514FACBDB6FD5A6C2E4341 }}
+          
