@@ -1,0 +1,7 @@
+POST http://localhost:3001/api/cart
+Content-Type: application/json
+
+{
+  "user_id": 2,
+  "total": 0
+}
