@@ -1,8 +1,8 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import cartService from "../services/cart";
 import { useNotification } from "../hooks/index";
 
@@ -12,6 +12,12 @@ const CreateProductDetails = () => {
   const product = useSelector((state) =>
     state.products.find((product) => product.id === Number(id))
   );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (user) {
+      dispatch(initializeCart(user.id));
+    }
+  }, [dispatch, user]);
 
   const [quantity, setQuantity] = useState(0);
 
@@ -36,40 +42,26 @@ const CreateProductDetails = () => {
     }
 
     try {
-      console.log("Fetching cart for user ID:", user.id); // Log before fetching cart
       let cart = await cartService.getCart(user.id);
-      console.log("Cart retrieved:", cart); // Log after fetching cart
 
       if (!cart) {
-        console.log("Creating new cart"); // Log before creating new cart
         cart = await cartService.addCart(user.id, 0);
-        console.log("New cart created:", cart); // Log after creating new cart
       }
 
       const price = parseFloat(product.price.split("/")[0]);
-      console.log("Product price:", price); // Log product price
 
-      // Check if product exists
       if (!product) {
-        console.error("Product not found:", product);
         notifyWith("Product not found. Please try again.", "error");
         return;
       }
 
-      // Check if cart exists
       if (!cart || !cart.id) {
-        console.error("Cart not found or invalid:", cart);
         notifyWith("Cart not found. Please try again.", "error");
         return;
       }
 
-      console.log("Adding item to cart"); // Log before adding item to cart
       await cartService.addItemToCart(cart.id, product.id, quantity);
-      console.log("Item added to cart"); // Log after adding item to cart
-
-      console.log("Updating cart total"); // Log before updating cart total
       await cartService.updateCartTotal(cart.id, cart.total + price * quantity);
-      console.log("Cart total updated"); // Log after updating cart total
 
       notifyWith("Item added to cart successfully!", "success");
     } catch (error) {

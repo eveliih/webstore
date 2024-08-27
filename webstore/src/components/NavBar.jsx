@@ -116,6 +116,15 @@ const CreateNavBar = () => {
                   </Button>
                 </Col>
               )}
+              <Col xs="auto">
+                <Button
+                  type="button"
+                  variant="primary"
+                  onClick={() => navigate("/cart")}
+                >
+                  Shopping Cart
+                </Button>
+              </Col>
             </Row>
           </Navbar.Collapse>
         </Container>
