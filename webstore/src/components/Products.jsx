@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import Card from "./Card";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { initializeCart } from "../reducers/cartReducer";
 
 const getFilter = (state) => state.filter;
 const getProducts = (state) => state.products;
+const getUser = (state) => state.user;
 
 const ProductList = () => {
   const { category } = useParams();
@@ -13,6 +15,8 @@ const ProductList = () => {
   const allProducts = useSelector(getProducts);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
+  const user = useSelector(getUser);
 
   useEffect(() => {
     const filteredProducts = allProducts.filter((product) => {
@@ -25,6 +29,12 @@ const ProductList = () => {
     setProducts(filteredProducts);
     setIsLoading(false);
   }, [category, filter, allProducts]);
+
+  useEffect(() => {
+    if (user) {
+      dispatch(initializeCart(user.id));
+    }
+  }, [dispatch, user]);
 
   return (
     <>

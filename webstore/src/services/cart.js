@@ -43,6 +43,17 @@ const getCart = async (userId) => {
   }
 };
 
+const getCartItems = async (cartId) => {
+  try {
+    const response = await axios.get(`${cartItemUrl}/cart/${cartId}`);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching cart items:", error);
+    throw error;
+  }
+};
+
 const updateCartTotal = async (cartId, total) => {
   console.log(cartId, total);
   try {
@@ -55,4 +66,10 @@ const updateCartTotal = async (cartId, total) => {
   }
 };
 
-export default { addCart, addItemToCart, getCart, updateCartTotal };
+export default {
+  addCart,
+  addItemToCart,
+  getCart,
+  updateCartTotal,
+  getCartItems,
+};

@@ -37,4 +37,16 @@ cartItemsRouter.get("/", async (request, response) => {
   }
 });
 
+cartItemsRouter.get("/cart/:cart_id", async (request, response) => {
+  const { cart_id } = request.params;
+  try {
+    const items = await CartItem.findAll({
+      where: { cart_id },
+    });
+    response.status(200).json(items);
+  } catch (error) {
+    response.status(400).json({ error: error.message });
+  }
+});
+
 module.exports = cartItemsRouter;

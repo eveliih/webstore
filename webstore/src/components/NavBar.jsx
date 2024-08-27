@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import LogIn from "./LogIn";
 import { useSelector } from "react-redux";
 import { clearUser } from "../reducers/userReducer";
+import { clearCart } from "../reducers/cartReducer";
 import RegisterForm from "./RegisterForm";
 import Notification from "./Notification";
 
@@ -38,6 +39,7 @@ const CreateNavBar = () => {
 
   const handleLogoutClick = () => {
     dispatch(clearUser());
+    dispatch(clearCart());
   };
 
   const handleSearchChange = (event) => {
