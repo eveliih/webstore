@@ -16,6 +16,18 @@ CartItem.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    cart_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "cart",
+        key: "id",
+      },
+    },
+    product_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   {
     sequelize,

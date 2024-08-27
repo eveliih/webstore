@@ -35,16 +35,47 @@ const CreateProductDetails = () => {
       return;
     }
 
-    let cart = await cartService.getCart(user.id);
-    if (!cart) {
-      cart = await cartService.addCart(user.id, product.price * quantity);
-      // update user's cart in state?
-    }
+    try {
+      console.log("Fetching cart for user ID:", user.id); // Log before fetching cart
+      let cart = await cartService.getCart(user.id);
+      console.log("Cart retrieved:", cart); // Log after fetching cart
 
-    const price = parseFloat(product.price.split("/")[0]);
-    console.log(cart.total);
-    await cartService.addItemToCart(cart.id, product.id, quantity);
-    await cartService.updateCartTotal(cart.id, cart.total + price * quantity);
+      if (!cart) {
+        console.log("Creating new cart"); // Log before creating new cart
+        cart = await cartService.addCart(user.id, 0);
+        console.log("New cart created:", cart); // Log after creating new cart
+      }
+
+      const price = parseFloat(product.price.split("/")[0]);
+      console.log("Product price:", price); // Log product price
+
+      // Check if product exists
+      if (!product) {
+        console.error("Product not found:", product);
+        notifyWith("Product not found. Please try again.", "error");
+        return;
+      }
+
+      // Check if cart exists
+      if (!cart || !cart.id) {
+        console.error("Cart not found or invalid:", cart);
+        notifyWith("Cart not found. Please try again.", "error");
+        return;
+      }
+
+      console.log("Adding item to cart"); // Log before adding item to cart
+      await cartService.addItemToCart(cart.id, product.id, quantity);
+      console.log("Item added to cart"); // Log after adding item to cart
+
+      console.log("Updating cart total"); // Log before updating cart total
+      await cartService.updateCartTotal(cart.id, cart.total + price * quantity);
+      console.log("Cart total updated"); // Log after updating cart total
+
+      notifyWith("Item added to cart successfully!", "success");
+    } catch (error) {
+      console.error("Error adding item to cart:", error);
+      notifyWith("Failed to add item to cart. Please try again.", "error");
+    }
     // update cart items in state?
   };
 

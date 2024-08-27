@@ -4,15 +4,14 @@ const cartItemUrl = import.meta.env.VITE_CARTITEM_URL;
 
 const addCart = async (userId, total) => {
   try {
-    const response = await axios.post(cartUrl, { userId, total });
+    const response = await axios.post(cartUrl, { user_id: userId, total });
     console.log(response.data);
     return response.data;
   } catch (error) {
-    console.error(error);
+    console.error("Error creating new cart:", error);
     throw error;
   }
 };
-
 const addItemToCart = async (cart_id, product_id, quantity) => {
   try {
     console.log(cart_id, product_id, quantity);
@@ -35,6 +34,10 @@ const getCart = async (userId) => {
     console.log(response.data);
     return response.data;
   } catch (error) {
+    if (error.response && error.response.status === 404) {
+      console.log("Cart not found");
+      return null;
+    }
     console.error(error);
     throw error;
   }
