@@ -4,6 +4,7 @@ const User = require("./user");
 const ProductCategory = require("./productCategory");
 const Cart = require("./cart");
 const CartItem = require("./cartItem");
+const { sequelize } = require("../util/db");
 
 Product.hasOne(Image, { onDelete: "CASCADE" });
 Image.belongsTo(Product);
@@ -19,6 +20,17 @@ CartItem.belongsTo(Cart, { foreignKey: "cart_id" });
 
 Product.hasMany(CartItem, { foreignKey: "product_id" });
 CartItem.belongsTo(Product, { foreignKey: "product_id" });
+
+const syncDatabase = async () => {
+  try {
+    await sequelize.sync();
+    console.log("Database synchronized");
+  } catch (error) {
+    console.error("Error synchronizing the database:", error);
+  }
+};
+
+syncDatabase();
 
 module.exports = {
   Product,
