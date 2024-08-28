@@ -29,11 +29,20 @@ const cartSlice = createSlice({
       state.cart = initialState.cart;
       state.cartItems = initialState.cartItems;
     },
+    updateTotal: (state, action) => {
+      state.cart.total = action.payload;
+    },
   },
 });
 
-export const { setCart, setCartItems, addItem, removeItem, clear } =
-  cartSlice.actions;
+export const {
+  setCart,
+  setCartItems,
+  addItem,
+  removeItem,
+  clear,
+  updateTotal,
+} = cartSlice.actions;
 
 export const initializeCart = (userId) => {
   return async (dispatch) => {
