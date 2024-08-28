@@ -51,8 +51,9 @@ const Cart = () => {
                     <div className="flex-grow-1 ms-3">
                       <Card.Title>{product.name}</Card.Title>
                       <Card.Text>
+                        Price: {product.price} € <br />
                         Quantity: {item.quantity} <br />
-                        Price: ${product.price}
+                        Total: {product.price * item.quantity} €
                       </Card.Text>
                     </div>
                     <Button
@@ -70,7 +71,7 @@ const Cart = () => {
             <Card>
               <Card.Body>
                 <Card.Title>Total Sum</Card.Title>
-                <Card.Text>${total.toFixed(2)}</Card.Text>
+                <Card.Text>{total.toFixed(2)} €</Card.Text>
                 <Button variant="success">Proceed to Payment</Button>
               </Card.Body>
             </Card>
