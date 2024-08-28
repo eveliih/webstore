@@ -26,6 +26,9 @@ const CreateNavBar = () => {
     navigate(`/${eventKey}`);
   };
 
+  const handleBrandClick = () => {
+    navigate("/");
+  };
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -55,7 +58,11 @@ const CreateNavBar = () => {
         expand="lg"
       >
         <Container fluid>
-          <Navbar.Brand id="brand-col" href="/">
+          <Navbar.Brand
+            id="brand-col"
+            onClick={handleBrandClick}
+            style={{ cursor: "pointer" }}
+          >
             FoodOnline
           </Navbar.Brand>
           <Navbar.Toggle />
