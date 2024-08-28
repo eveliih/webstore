@@ -48,14 +48,8 @@ export const initializeCart = (userId) => {
   return async (dispatch) => {
     try {
       let cart = await cartService.getCart(userId);
-      if (!cart) {
-        cart = initialState.cart;
-      }
       dispatch(setCart(cart));
       let cartItems = cart ? await cartService.getCartItems(cart.id) : [];
-      if (!cartItems) {
-        cartItems = [];
-      }
       dispatch(setCartItems(cartItems));
     } catch (error) {
       console.error("Failed to initialize cart:", error);

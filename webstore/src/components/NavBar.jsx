@@ -28,6 +28,7 @@ const CreateNavBar = () => {
 
   const handleBrandClick = () => {
     navigate("/");
+    dispatch(setFilter(""));
   };
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
@@ -43,11 +44,20 @@ const CreateNavBar = () => {
   const handleLogoutClick = () => {
     dispatch(clearUser());
     dispatch(clearCart());
+    dispatch(setFilter(""));
+    navigate("/");
   };
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
     dispatch(setFilter(event.target.value || ""));
+  };
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    setSearchTerm(event.target.value);
+    dispatch(setFilter(searchTerm));
+    navigate("/products");
   };
 
   return (
@@ -80,7 +90,7 @@ const CreateNavBar = () => {
                 </NavDropdown>
               </Col>
               <Col md="auto" className="navbar-item">
-                <Form>
+                <Form onSubmit={handleSearchSubmit}>
                   <Row>
                     <Col xs="auto" className="navbar-item">
                       <Form.Control
@@ -90,6 +100,11 @@ const CreateNavBar = () => {
                         value={searchTerm}
                         onChange={handleSearchChange}
                       />
+                    </Col>
+                    <Col xs="auto" className="navbar-item">
+                      <Button type="submit" variant="outline-dark">
+                        Search
+                      </Button>
                     </Col>
                   </Row>
                 </Form>
