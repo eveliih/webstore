@@ -59,10 +59,21 @@ const updateCartTotal = async (cartId, total) => {
   }
 };
 
+const deleteCartItem = async (cartItemId) => {
+  try {
+    console.log(`${cartItemUrl}/${cartItemId}`);
+    const response = await axios.delete(`${cartItemUrl}/${cartItemId}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export default {
   addCart,
   addItemToCart,
   getCart,
   updateCartTotal,
   getCartItems,
+  deleteCartItem,
 };

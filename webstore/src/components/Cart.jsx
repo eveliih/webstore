@@ -1,15 +1,33 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { removeItem, updateTotal } from "../reducers/cartReducer";
+import cartService from "../services/cart";
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const total = useSelector((state) => state.cart.cart?.total || 0);
   const products = useSelector((state) => state.products);
 
-  const totalSum = cartItems.reduce((sum, item) => {
+  const handleRemove = async (id) => {
+    const item = cartItems.find((item) => item.id === id);
     const product = products.find((product) => product.id === item.product_id);
-    return sum + product.price * item.quantity;
-  }, 0);
+
+    dispatch(removeItem(id));
+
+    dispatch(updateTotal(total - product.price * item.quantity));
+
+    try {
+      await cartService.deleteCartItem(id);
+      await cartService.updateCartTotal(
+        item.cart_id,
+        total - product.price * item.quantity
+      );
+    } catch (error) {
+      console.error("Failed to remove item from database", error);
+    }
+  };
 
   return (
     <Container>
@@ -37,7 +55,12 @@ const Cart = () => {
                         Price: ${product.price}
                       </Card.Text>
                     </div>
-                    <Button variant="danger">Remove</Button>
+                    <Button
+                      variant="danger"
+                      onClick={() => handleRemove(item.id)}
+                    >
+                      Remove
+                    </Button>
                   </Card.Body>
                 </Card>
               );
@@ -47,7 +70,7 @@ const Cart = () => {
             <Card>
               <Card.Body>
                 <Card.Title>Total Sum</Card.Title>
-                <Card.Text>${totalSum.toFixed(2)}</Card.Text>
+                <Card.Text>${total.toFixed(2)}</Card.Text>
                 <Button variant="success">Proceed to Payment</Button>
               </Card.Body>
             </Card>
