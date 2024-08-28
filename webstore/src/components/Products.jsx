@@ -23,7 +23,7 @@ const ProductList = () => {
       const matchesFilter =
         filter === "" ||
         product.productCategory.name.toLowerCase() === filter.toLowerCase() ||
-        product.name.toLowerCase().startsWith(filter.toLowerCase());
+        product.name.toLowerCase().includes(filter.toLowerCase());
       return matchesFilter;
     });
     setProducts(filteredProducts);
