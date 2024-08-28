@@ -28,6 +28,7 @@ const CreateNavBar = () => {
 
   const handleBrandClick = () => {
     navigate("/");
+    dispatch(setFilter(""));
   };
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
@@ -43,6 +44,8 @@ const CreateNavBar = () => {
   const handleLogoutClick = () => {
     dispatch(clearUser());
     dispatch(clearCart());
+    dispatch(setFilter(""));
+    navigate("/");
   };
 
   const handleSearchChange = (event) => {
