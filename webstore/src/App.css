@@ -91,9 +91,14 @@ html, body {
   border-color: #0F612A !important;
 }
 
-.cart-button:hover{
+.cart-button:hover, .shopping-cart-btn:hover{
   background-color: #083517 !important;
   border-color: #083517 !important;
+}
+
+.shopping-cart-btn{
+  background-color: #0F612A !important;
+  border-color: #0F612A !important;
 }
 
 .custom-breadcrumb a {

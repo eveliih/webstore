@@ -120,8 +120,10 @@ const CreateNavBar = () => {
               )}
               <Col xs="auto">
                 <Button
+                  className="shopping-cart-btn"
                   type="button"
                   variant="primary"
+                  disabled={!user}
                   onClick={() => navigate("/cart")}
                 >
                   Shopping Cart
