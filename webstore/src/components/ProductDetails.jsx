@@ -1,10 +1,16 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import cartService from "../services/cart";
 import { useNotification } from "../hooks/index";
+import {
+  initializeCart,
+  addItem,
+  setCart,
+  updateTotal,
+} from "../reducers/cartReducer";
 
 const CreateProductDetails = () => {
   const { id } = useParams();
@@ -12,6 +18,12 @@ const CreateProductDetails = () => {
   const product = useSelector((state) =>
     state.products.find((product) => product.id === Number(id))
   );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (user) {
+      dispatch(initializeCart(user.id));
+    }
+  }, [dispatch, user]);
 
   const [quantity, setQuantity] = useState(0);
 
@@ -35,17 +47,39 @@ const CreateProductDetails = () => {
       return;
     }
 
-    let cart = await cartService.getCart(user.id);
-    if (!cart) {
-      cart = await cartService.addCart(user.id, product.price * quantity);
-      // update user's cart in state?
-    }
+    try {
+      let cart = await cartService.getCart(user.id);
 
-    const price = parseFloat(product.price.split("/")[0]);
-    console.log(cart.total);
-    await cartService.addItemToCart(cart.id, product.id, quantity);
-    await cartService.updateCartTotal(cart.id, cart.total + price * quantity);
-    // update cart items in state?
+      if (!cart) {
+        cart = await cartService.addCart(user.id, 0);
+        dispatch(setCart(cart));
+      }
+
+      const price = parseFloat(product.price.split("/")[0]);
+
+      if (!product) {
+        notifyWith("Product not found. Please try again.", "error");
+        return;
+      }
+
+      if (!cart || !cart.id) {
+        notifyWith("Cart not found. Please try again.", "error");
+        return;
+      }
+
+      const cartItem = await cartService.addItemToCart(
+        cart.id,
+        product.id,
+        quantity
+      );
+      await cartService.updateCartTotal(cart.id, cart.total + price * quantity);
+      dispatch(addItem(cartItem));
+      dispatch(updateTotal(cart.total + price * quantity));
+
+      notifyWith("Item added to cart successfully!", "success");
+    } catch (error) {
+      notifyWith("Failed to add item to cart. Please try again.", "error");
+    }
   };
 
   if (product === undefined) {

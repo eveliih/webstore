@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import cartService from "../services/cart";
+import storageService from "../services/storage";
 
 const initialState = {
   cart: null,
@@ -21,20 +22,51 @@ const cartSlice = createSlice({
     },
     removeItem: (state, action) => {
       state.cartItems = state.cartItems.filter(
-        (item) => item.id !== action.payload.id
+        (item) => item.id !== action.payload
       );
+    },
+    clear: (state) => {
+      state.cart = initialState.cart;
+      state.cartItems = initialState.cartItems;
+    },
+    updateTotal: (state, action) => {
+      state.cart.total = action.payload;
     },
   },
 });
 
-export const { setCart, setCartItems, addItem, removeItem } = cartSlice.actions;
+export const {
+  setCart,
+  setCartItems,
+  addItem,
+  removeItem,
+  clear,
+  updateTotal,
+} = cartSlice.actions;
 
 export const initializeCart = (userId) => {
   return async (dispatch) => {
-    const cart = await cartService.getCart(userId);
-    dispatch(setCart(cart));
-    const cartItems = await cartService.getCartItems(cart.id);
-    dispatch(setCartItems(cartItems));
+    try {
+      let cart = await cartService.getCart(userId);
+      if (!cart) {
+        cart = initialState.cart;
+      }
+      dispatch(setCart(cart));
+      let cartItems = cart ? await cartService.getCartItems(cart.id) : [];
+      if (!cartItems) {
+        cartItems = [];
+      }
+      dispatch(setCartItems(cartItems));
+    } catch (error) {
+      console.error("Failed to initialize cart:", error);
+    }
+  };
+};
+
+export const clearCart = () => {
+  return async (dispatch) => {
+    storageService.removeCart();
+    dispatch(clear());
   };
 };
 

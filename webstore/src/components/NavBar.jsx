@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import LogIn from "./LogIn";
 import { useSelector } from "react-redux";
 import { clearUser } from "../reducers/userReducer";
+import { clearCart } from "../reducers/cartReducer";
 import RegisterForm from "./RegisterForm";
 import Notification from "./Notification";
 
@@ -25,6 +26,9 @@ const CreateNavBar = () => {
     navigate(`/${eventKey}`);
   };
 
+  const handleBrandClick = () => {
+    navigate("/");
+  };
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -38,6 +42,7 @@ const CreateNavBar = () => {
 
   const handleLogoutClick = () => {
     dispatch(clearUser());
+    dispatch(clearCart());
   };
 
   const handleSearchChange = (event) => {
@@ -53,7 +58,11 @@ const CreateNavBar = () => {
         expand="lg"
       >
         <Container fluid>
-          <Navbar.Brand id="brand-col" href="/">
+          <Navbar.Brand
+            id="brand-col"
+            onClick={handleBrandClick}
+            style={{ cursor: "pointer" }}
+          >
             FoodOnline
           </Navbar.Brand>
           <Navbar.Toggle />
@@ -116,6 +125,17 @@ const CreateNavBar = () => {
                   </Button>
                 </Col>
               )}
+              <Col xs="auto">
+                <Button
+                  className="shopping-cart-btn"
+                  type="button"
+                  variant="primary"
+                  disabled={!user}
+                  onClick={() => navigate("/cart")}
+                >
+                  Shopping Cart
+                </Button>
+              </Col>
             </Row>
           </Navbar.Collapse>
         </Container>

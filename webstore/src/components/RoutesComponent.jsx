@@ -1,16 +1,18 @@
-import { Route, Routes } from 'react-router-dom'
-import ProductDetails from './ProductDetails';
-import Products from './Products'; 
+import { Route, Routes } from "react-router-dom";
+import ProductDetails from "./ProductDetails";
+import Products from "./Products";
+import Cart from "./Cart";
 
 const RoutesComponent = () => {
   return (
     <Routes>
       <Route path="/:category/:name/:id" element={<ProductDetails />} />
-      <Route path="/:category" element={<Products/>} />
-      <Route path="/products" element={<Products/>} />
-      <Route path="/" element={<Products/>} />
+      <Route path="/:category" element={<Products />} />
+      <Route path="/products" element={<Products />} />
+      <Route path="/" element={<Products />} />
+      <Route path="/cart" element={<Cart />} />
     </Routes>
-  )
-}
+  );
+};
 
-export default RoutesComponent
+export default RoutesComponent;
