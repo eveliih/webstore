@@ -5,6 +5,7 @@ import Accordion from "react-bootstrap/Accordion";
 import { useState, useEffect } from "react";
 import cartService from "../services/cart";
 import { useNotification } from "../hooks/index";
+import { initializeCart, addItem, setCart } from "../reducers/cartReducer";
 
 const CreateProductDetails = () => {
   const { id } = useParams();
@@ -46,6 +47,7 @@ const CreateProductDetails = () => {
 
       if (!cart) {
         cart = await cartService.addCart(user.id, 0);
+        dispatch(setCart(cart));
       }
 
       const price = parseFloat(product.price.split("/")[0]);
@@ -60,15 +62,20 @@ const CreateProductDetails = () => {
         return;
       }
 
-      await cartService.addItemToCart(cart.id, product.id, quantity);
+      const cartItem = await cartService.addItemToCart(
+        cart.id,
+        product.id,
+        quantity
+      );
       await cartService.updateCartTotal(cart.id, cart.total + price * quantity);
+      console.log(cartItem);
+      dispatch(addItem(cartItem));
 
       notifyWith("Item added to cart successfully!", "success");
     } catch (error) {
       console.error("Error adding item to cart:", error);
       notifyWith("Failed to add item to cart. Please try again.", "error");
     }
-    // update cart items in state?
   };
 
   if (product === undefined) {
