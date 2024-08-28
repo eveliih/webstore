@@ -1,16 +1,13 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - FoodOnlineApp
+name: Build and deploy Node.js app to Azure Web App - foodonline
 
 on:
   push:
     branches:
       - main
   workflow_dispatch:
-  pull_request:
-    branches: [main]
-    types: [opened, synchronize]
 
 jobs:
   build:
@@ -27,54 +24,43 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm install
-          # npm run test --if-present
-          npm run build:ui:ubuntu --if-present
-          cd ./webstore
-          # npm run test --if-present
-        env:
-          VITE_APP_BASE_URL: /api/products
-          VITE_LOGIN_URL: /api/login
-          VITE_REGISTER_URL: /api/users
-          VITE_CART_URL: /api/cart
-          VITE_CARTITEM_URL: /api/cartItem
-    
-
+          npm run build --if-present
+          npm run test --if-present
 
       - name: Zip artifact for deployment
-        run: zip -r release.zip dist controllers models util app.js index.js package.json package-lock.json
+        run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: node-app
           path: release.zip
 
   deploy:
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     needs: build
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write
-    
+      id-token: write #This is required for requesting the JWT
+
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: node-app
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6FC6E36A06E5437BBA220646AA6AD2AE }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_961F7C40868A411FA2C870653752940E }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A9D906C76E4D4A0985A292D995D74871 }}
-      
+
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
