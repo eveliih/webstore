@@ -32,6 +32,15 @@ const cartSlice = createSlice({
     updateTotal: (state, action) => {
       state.cart.total = action.payload;
     },
+    updateItemQuantity: (state, action) => {
+      const { id, quantity } = action.payload;
+      const item = state.cartItems.find((item) => item.id === id);
+      if (item) {
+        item.quantity = quantity;
+      } else {
+        console.log(`Item with id ${id} not found`);
+      }
+    },
   },
 });
 
@@ -42,6 +51,7 @@ export const {
   removeItem,
   clear,
   updateTotal,
+  updateItemQuantity,
 } = cartSlice.actions;
 
 export const initializeCart = (userId) => {

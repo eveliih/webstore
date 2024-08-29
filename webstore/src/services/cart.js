@@ -28,14 +28,14 @@ const addItemToCart = async (cart_id, product_id, quantity) => {
 const getCart = async (userId) => {
   try {
     const response = await axios.get(`${cartUrl}/user/${userId}`);
-
     return response.data;
   } catch (error) {
     if (error.response && error.response.status === 404) {
       return null;
+    } else {
+      console.error("Error fetching cart:", error);
+      throw error;
     }
-
-    throw error;
   }
 };
 
@@ -69,6 +69,18 @@ const deleteCartItem = async (cartItemId) => {
   }
 };
 
+const updateItemQuantity = async (cartItemId, quantity) => {
+  try {
+    const response = await axios.put(`${cartItemUrl}/${cartItemId}`, {
+      quantity,
+    });
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export default {
   addCart,
   addItemToCart,
@@ -76,4 +88,5 @@ export default {
   updateCartTotal,
   getCartItems,
   deleteCartItem,
+  updateItemQuantity,
 };
