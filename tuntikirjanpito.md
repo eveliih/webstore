@@ -40,6 +40,7 @@
 | 27.8. | 7 | Azureen uuden tilauksen luominen (käytin ennen lomaa kaikki student creditit vahingossa, kun loin testitietokannan...), tietokannan luominen uudelleen, tietokantaan datan lisäämistä, deployn ja workflow uudelleen toimintaan laittaminen, ostoskoriin tuotteiden lisäämisen työstäminen backend ja frontend |
 | 28.8. | 6 | Ostoskorin ominaisuuksien työstäminen frontend ja backend |
 | 29.8. | 2 | Muokkaa olemassaolevan tuotteen määrää, jos lisätään sama tuote ostoskoriin, muuten lisää uusi tuote |
+| 3.9. | 3 | Ostoskorin lisäominaisuuksien lisääminen, korjaaminen ja parantelu |
 | yhteensä | 132 | |
 
 
