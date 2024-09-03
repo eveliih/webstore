@@ -26,6 +26,17 @@ const CreateProductDetails = () => {
 
   const [quantity, setQuantity] = useState(0);
 
+  useEffect(() => {
+    if (product && cartitems) {
+      const existingItem = cartitems.find(
+        (item) => item.product_id === product.id
+      );
+      if (existingItem) {
+        setQuantity(existingItem.quantity);
+      }
+    }
+  }, [product, cartitems]);
+
   const increaseQuantity = () =>
     setQuantity((prevQuantity) => prevQuantity + 1);
   const decreaseQuantity = () =>
@@ -64,15 +75,12 @@ const CreateProductDetails = () => {
       );
 
       if (existingItem) {
-        await cartService.updateItemQuantity(
-          existingItem.id,
-          existingItem.quantity + quantity
-        );
+        await cartService.updateItemQuantity(existingItem.id, quantity);
 
         dispatch(
           updateItemQuantity({
             id: existingItem.id,
-            quantity: existingItem.quantity + quantity,
+            quantity: quantity,
           })
         );
       } else {
