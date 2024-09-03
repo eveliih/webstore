@@ -41,7 +41,8 @@
 | 28.8. | 6 | Ostoskorin ominaisuuksien työstäminen frontend ja backend |
 | 29.8. | 2 | Muokkaa olemassaolevan tuotteen määrää, jos lisätään sama tuote ostoskoriin, muuten lisää uusi tuote |
 | 3.9. | 3 | Ostoskorin lisäominaisuuksien lisääminen, korjaaminen ja parantelu |
-| yhteensä | 132 | |
+| 3.9. | 3 | Tilausyhteenvedon lähettäminen sähköpostilla käyttäjälle ja muita paranteluja |
+| yhteensä | 138 | |
 
 
 
