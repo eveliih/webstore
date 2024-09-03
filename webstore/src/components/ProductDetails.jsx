@@ -20,14 +20,9 @@ const CreateProductDetails = () => {
   const product = useSelector((state) =>
     state.products.find((product) => product.id === Number(id))
   );
+  const cart = useSelector((state) => state.cart.cart);
   const cartitems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
-
-  /*useEffect(() => {
-    if (user) {
-      dispatch(initializeCart(user.id));
-    }
-  }, [dispatch, user]);*/
 
   const [quantity, setQuantity] = useState(0);
 
@@ -52,15 +47,6 @@ const CreateProductDetails = () => {
     }
 
     try {
-      let cart = await cartService.getCart(user.id);
-
-      if (!cart) {
-        console.log("Cart not found. Creating a new cart.");
-        cart = await cartService.addCart(user.id, 0);
-        dispatch(setCart(user.id));
-        dispatch(setCartItems([]));
-      }
-
       const price = parseFloat(product.price.split("/")[0]);
 
       if (!product) {

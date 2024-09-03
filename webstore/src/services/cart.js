@@ -38,13 +38,14 @@ const getCart = async (userId) => {
     }
   }
 };
-
 const getCartItems = async (cartId) => {
   try {
     const response = await axios.get(`${cartItemUrl}/cart/${cartId}`);
-
-    return response.data;
+    return response.data || [];
   } catch (error) {
+    if (error.response && error.response.status === 404) {
+      return [];
+    }
     throw error;
   }
 };
