@@ -2,8 +2,12 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const cors = require("cors");
+const nodemailer = require("nodemailer");
+const bodyParser = require("body-parser");
+
 app.use(cors());
 app.use(express.static("dist"));
+app.use(bodyParser.json());
 
 const { PORT } = require("./util/config");
 const { connectToDatabase } = require("./util/db");
@@ -14,6 +18,7 @@ const usersRouter = require("./controllers/users");
 const loginRouter = require("./controllers/login");
 const cartRouter = require("./controllers/cart");
 const cartItemRouter = require("./controllers/cartItems");
+const emailRouter = require("./controllers/email");
 
 app.use(express.json());
 
@@ -23,6 +28,7 @@ app.use("/api/users", usersRouter);
 app.use("/api/login", loginRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/cartItem", cartItemRouter);
+app.use("/api/email", emailRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "dist", "index.html"));

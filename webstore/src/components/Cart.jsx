@@ -1,15 +1,17 @@
 import React from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { removeItem, updateTotal } from "../reducers/cartReducer";
 import cartService from "../services/cart";
+import EmailModal from "./EmailModal";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
   const total = useSelector((state) => state.cart.cart?.total || 0);
   const products = useSelector((state) => state.products);
-
+  const [showModal, setShowModal] = useState(false);
   const handleRemove = async (id) => {
     const item = cartItems.find((item) => item.id === id);
     const product = products.find((product) => product.id === item.product_id);
@@ -27,6 +29,10 @@ const Cart = () => {
     } catch (error) {
       console.error("Failed to remove item from database", error);
     }
+  };
+
+  const handlePayment = () => {
+    setShowModal(true);
   };
 
   return (
@@ -72,7 +78,9 @@ const Cart = () => {
               <Card.Body>
                 <Card.Title>Total Sum</Card.Title>
                 <Card.Text>{total.toFixed(2)} €</Card.Text>
-                <Button variant="success">Proceed to Payment</Button>
+                <Button variant="success" onClick={handlePayment}>
+                  Proceed to Payment
+                </Button>
               </Card.Body>
             </Card>
           </Col>
@@ -80,6 +88,12 @@ const Cart = () => {
       ) : (
         <p>Your cart is empty.</p>
       )}
+
+      <EmailModal
+        show={showModal}
+        handleClose={() => setShowModal(false)}
+        total={total}
+      />
     </Container>
   );
 };

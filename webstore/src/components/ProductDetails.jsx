@@ -6,12 +6,9 @@ import { useState, useEffect } from "react";
 import cartService from "../services/cart";
 import { useNotification } from "../hooks/index";
 import {
-  initializeCart,
   addItem,
   updateTotal,
   updateItemQuantity,
-  setCart,
-  setCartItems,
 } from "../reducers/cartReducer";
 
 const CreateProductDetails = () => {
@@ -74,7 +71,13 @@ const CreateProductDetails = () => {
         (item) => item.product_id === product.id
       );
 
+      let newTotal = cart.total;
+
       if (existingItem) {
+        const oldTotalForItem = existingItem.quantity * price;
+        const newTotalForItem = quantity * price;
+        newTotal = newTotal - oldTotalForItem + newTotalForItem;
+
         await cartService.updateItemQuantity(existingItem.id, quantity);
 
         dispatch(
@@ -89,11 +92,12 @@ const CreateProductDetails = () => {
           product.id,
           quantity
         );
+        newTotal += price * quantity;
         dispatch(addItem(cartItem));
       }
 
-      await cartService.updateCartTotal(cart.id, cart.total + price * quantity);
-      dispatch(updateTotal(cart.total + price * quantity));
+      await cartService.updateCartTotal(cart.id, newTotal);
+      dispatch(updateTotal(newTotal));
 
       notifyWith("Item added to cart successfully!", "success");
     } catch (error) {

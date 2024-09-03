@@ -37,6 +37,7 @@ jobs:
           VITE_REGISTER_URL: /api/users
           VITE_CART_URL: /api/cart
           VITE_CARTITEM_URL: /api/cartItem
+          VITE_EMAIL_URL: /api/email
     
 
 
