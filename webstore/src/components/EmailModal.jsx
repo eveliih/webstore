@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { Modal, Button, Form } from "react-bootstrap";
+import { Modal, Button, Form, Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import emailService from "../services/email";
 
 const EmailModal = ({ show, handleClose, total }) => {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const products = useSelector((state) => state.products);
 
   const handleSubmitEmail = async () => {
+    setLoading(true);
     try {
       const emailBody = `
         <div style="font-family: Arial, sans-serif; color: #333;">
@@ -66,13 +68,15 @@ const EmailModal = ({ show, handleClose, total }) => {
     } catch (error) {
       console.error("Failed to send email", error);
       alert("Failed to process payment.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Enter Your Email</Modal.Title>
+        <Modal.Title>Place your order</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -83,16 +87,27 @@ const EmailModal = ({ show, handleClose, total }) => {
               placeholder="Enter email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              disabled={loading}
             />
           </Form.Group>
         </Form>
+        <br />
+        <p>
+          Your email address will be used solely for sending your order details
+          and will not be stored or shared.
+        </p>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button variant="outline-dark" onClick={handleClose} disabled={loading}>
           Close
         </Button>
-        <Button variant="primary" onClick={handleSubmitEmail}>
-          Submit
+        <Button
+          variant="primary"
+          onClick={handleSubmitEmail}
+          className="emailsubmit-btn"
+          disabled={loading}
+        >
+          {loading ? <Spinner animation="border" size="sm" /> : "Submit"}
         </Button>
       </Modal.Footer>
     </Modal>

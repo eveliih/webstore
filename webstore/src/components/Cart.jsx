@@ -79,7 +79,7 @@ const Cart = () => {
                 <Card.Title>Total Sum</Card.Title>
                 <Card.Text>{total.toFixed(2)} €</Card.Text>
                 <Button variant="success" onClick={handlePayment}>
-                  Proceed to Payment
+                  Order
                 </Button>
               </Card.Body>
             </Card>
