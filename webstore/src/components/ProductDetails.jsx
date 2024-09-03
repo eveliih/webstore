@@ -8,8 +8,10 @@ import { useNotification } from "../hooks/index";
 import {
   initializeCart,
   addItem,
-  setCart,
   updateTotal,
+  updateItemQuantity,
+  setCart,
+  setCartItems,
 } from "../reducers/cartReducer";
 
 const CreateProductDetails = () => {
@@ -18,12 +20,14 @@ const CreateProductDetails = () => {
   const product = useSelector((state) =>
     state.products.find((product) => product.id === Number(id))
   );
+  const cartitems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
-  useEffect(() => {
+
+  /*useEffect(() => {
     if (user) {
       dispatch(initializeCart(user.id));
     }
-  }, [dispatch, user]);
+  }, [dispatch, user]);*/
 
   const [quantity, setQuantity] = useState(0);
 
@@ -51,8 +55,10 @@ const CreateProductDetails = () => {
       let cart = await cartService.getCart(user.id);
 
       if (!cart) {
+        console.log("Cart not found. Creating a new cart.");
         cart = await cartService.addCart(user.id, 0);
-        dispatch(setCart(cart));
+        dispatch(setCart(user.id));
+        dispatch(setCartItems([]));
       }
 
       const price = parseFloat(product.price.split("/")[0]);
@@ -67,13 +73,32 @@ const CreateProductDetails = () => {
         return;
       }
 
-      const cartItem = await cartService.addItemToCart(
-        cart.id,
-        product.id,
-        quantity
+      const existingItem = cartitems.find(
+        (item) => item.product_id === product.id
       );
+
+      if (existingItem) {
+        await cartService.updateItemQuantity(
+          existingItem.id,
+          existingItem.quantity + quantity
+        );
+
+        dispatch(
+          updateItemQuantity({
+            id: existingItem.id,
+            quantity: existingItem.quantity + quantity,
+          })
+        );
+      } else {
+        const cartItem = await cartService.addItemToCart(
+          cart.id,
+          product.id,
+          quantity
+        );
+        dispatch(addItem(cartItem));
+      }
+
       await cartService.updateCartTotal(cart.id, cart.total + price * quantity);
-      dispatch(addItem(cartItem));
       dispatch(updateTotal(cart.total + price * quantity));
 
       notifyWith("Item added to cart successfully!", "success");

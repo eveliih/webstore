@@ -49,4 +49,20 @@ cartItemsRouter.get("/cart/:cart_id", async (request, response) => {
   }
 });
 
+cartItemsRouter.put("/:id", async (request, response) => {
+  const { id } = request.params;
+  const { quantity } = request.body;
+  try {
+    const item = await CartItem.findByPk(id);
+    if (!item) {
+      return response.status(404).json({ error: "Cart item not found" });
+    }
+    item.quantity = quantity;
+    await item.save();
+    response.status(200).json(item);
+  } catch (error) {
+    response.status(400).json({ error: error.message });
+  }
+});
+
 module.exports = cartItemsRouter;
