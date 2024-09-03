@@ -58,6 +58,10 @@ export const initializeCart = (userId) => {
   return async (dispatch) => {
     try {
       let cart = await cartService.getCart(userId);
+      if (!cart) {
+        cart = await cartService.addCart(userId, 0);
+        console.log("New cart created for user:", userId);
+      }
       dispatch(setCart(cart));
       let cartItems = cart ? await cartService.getCartItems(cart.id) : [];
       dispatch(setCartItems(cartItems));
