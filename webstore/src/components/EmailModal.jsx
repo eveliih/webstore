@@ -1,73 +1,29 @@
 import React, { useState } from "react";
-import { Modal, Button, Form, Spinner } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { Modal, Button, Form, Spinner, Alert } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
 import emailService from "../services/email";
+import { notify } from "../reducers/notificationReducer";
+import { generateEmailBody } from "../helpers/emailCreator";
 
 const EmailModal = ({ show, handleClose, total }) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
   const products = useSelector((state) => state.products);
 
   const handleSubmitEmail = async () => {
     setLoading(true);
+    setErrorMessage(null);
     try {
-      const emailBody = `
-        <div style="font-family: Arial, sans-serif; color: #333;">
-          <div style="background-color: #f8f8f8; padding: 20px; text-align: center;">
-            <h1 style="margin: 0; color: #0F612A;">FoodOnline</h1>
-          </div>
-          <div style="padding: 20px;">
-            <h2 style="color: #0F612A;">Order Confirmation</h2>
-            <p>Thank you for your purchase! Your total is <strong>${total.toFixed(
-              2
-            )} €</strong>.</p>
-            <h3 style="color: #0F612A;">Ordered Items:</h3>
-            <table style="width: 100%; border-collapse: collapse;">
-              <thead>
-                <tr>
-                  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Name</th>
-                  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Quantity</th>
-                  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Price</th>
-                  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${cartItems
-                  .map((item) => {
-                    const product = products.find(
-                      (p) => p.id === item.product_id
-                    );
-                    const itemTotal = (
-                      parseFloat(product.price) * item.quantity
-                    ).toFixed(2);
-                    return `
-                      <tr>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${product.name}</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${item.quantity}</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${product.price} €</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${itemTotal} €</td>
-                      </tr>
-                    `;
-                  })
-                  .join("")}
-              </tbody>
-            </table>
-            <p style="margin-top: 20px;">If you have any questions, feel free to contact us.</p>
-            <p>Best regards,<br />FoodOnline Team</p>
-          </div>
-          <div style="background-color: #f8f8f8; padding: 10px; text-align: center;">
-            <p style="margin: 0;">&copy; 2024 FoodOnline. All rights reserved.</p>
-          </div>
-        </div>
-      `;
-
+      const emailBody = generateEmailBody(total, cartItems, products);
       await emailService.sendEmail(email, "Order Confirmation", emailBody);
-      alert("Payment processed and email sent!");
+      dispatch(notify("Order done and email sent!", "success"));
       handleClose();
     } catch (error) {
       console.error("Failed to send email", error);
-      alert("Failed to process payment.");
+      setErrorMessage("Failed to sent email. Please check your email address.");
     } finally {
       setLoading(false);
     }
@@ -79,6 +35,15 @@ const EmailModal = ({ show, handleClose, total }) => {
         <Modal.Title>Place your order</Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        {errorMessage && (
+          <Alert
+            variant="danger"
+            onClose={() => setErrorMessage(null)}
+            dismissible
+          >
+            {errorMessage}
+          </Alert>
+        )}
         <Form>
           <Form.Group controlId="formEmail">
             <Form.Label>Email address</Form.Label>
