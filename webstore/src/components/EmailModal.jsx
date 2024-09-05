@@ -15,7 +15,8 @@ const EmailModal = ({ show, handleClose, total }) => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const products = useSelector((state) => state.products);
 
-  const handleSubmitEmail = async () => {
+  const handleSubmitEmail = async (event) => {
+    event.preventDefault();
     setLoading(true);
     setErrorMessage(null);
     try {
@@ -47,7 +48,7 @@ const EmailModal = ({ show, handleClose, total }) => {
             {errorMessage}
           </Alert>
         )}
-        <Form>
+        <Form onSubmit={handleSubmitEmail}>
           <Form.Group controlId="formEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control
@@ -58,12 +59,12 @@ const EmailModal = ({ show, handleClose, total }) => {
               disabled={loading}
             />
           </Form.Group>
+          <br />
+          <p>
+            Your email address will be used solely for sending your order
+            details and will not be stored or shared.
+          </p>
         </Form>
-        <br />
-        <p>
-          Your email address will be used solely for sending your order details
-          and will not be stored or shared.
-        </p>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="outline-dark" onClick={handleClose} disabled={loading}>
@@ -71,7 +72,7 @@ const EmailModal = ({ show, handleClose, total }) => {
         </Button>
         <Button
           variant="primary"
-          onClick={handleSubmitEmail}
+          type="submit"
           className="emailsubmit-btn"
           disabled={loading}
         >
