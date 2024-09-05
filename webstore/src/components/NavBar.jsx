@@ -21,7 +21,6 @@ const CreateNavBar = () => {
   const navigate = useNavigate();
 
   const handleItemClick = (eventKey) => {
-    console.log(eventKey);
     dispatch(setFilter(eventKey));
     navigate(`/${eventKey}`);
   };
