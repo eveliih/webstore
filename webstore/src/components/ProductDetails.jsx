@@ -128,7 +128,9 @@ const CreateProductDetails = () => {
         </Col>
         <Col>
           <h1>{product.name}</h1>
-          <h2>Price: {product.price} €</h2>
+          <h2>
+            Price: {product.price} €/{product.unit}
+          </h2>
           <h3 className="total">Total: {totalPrice} €</h3>
           <div className="quantity-control">
             <Button variant="light" onClick={decreaseQuantity}>
