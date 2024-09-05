@@ -38,6 +38,8 @@ jobs:
           VITE_CART_URL: /api/cart
           VITE_CARTITEM_URL: /api/cartItem
           VITE_EMAIL_URL: /api/email
+          VITE_ORDER_URL: /api/order
+          VITE:ORDERITEM_URL: /api/orderItem
     
 
 
