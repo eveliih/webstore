@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button, Form, Spinner, Alert } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import emailService from "../services/email";
 import { notify } from "../reducers/notificationReducer";
 import { generateEmailBody } from "../helpers/emailCreator";
@@ -10,6 +11,7 @@ const EmailModal = ({ show, handleClose, total }) => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cart.cartItems);
   const products = useSelector((state) => state.products);
 
@@ -21,9 +23,10 @@ const EmailModal = ({ show, handleClose, total }) => {
       await emailService.sendEmail(email, "Order Confirmation", emailBody);
       dispatch(notify("Order done and email sent!", "success"));
       handleClose();
+      navigate("/thank-you");
     } catch (error) {
       console.error("Failed to send email", error);
-      setErrorMessage("Failed to sent email. Please check your email address.");
+      setErrorMessage("Failed to send email. Please check your email address.");
     } finally {
       setLoading(false);
     }
