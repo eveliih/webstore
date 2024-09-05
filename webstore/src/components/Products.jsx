@@ -59,9 +59,18 @@ const ProductList = () => {
             <p>Loading products...</p>
           </Col>
         ) : products.length > 0 ? (
-          products.map((product) => {
-            return (
-              <Col key={product.id} className="product-col">
+          <Row>
+            {products.map((product) => (
+              <Col
+                key={product.id}
+                className="product-col"
+                xs={12}
+                sm={12}
+                md={6}
+                lg={6}
+                xl={4}
+                xxl={3}
+              >
                 <Link
                   to={{
                     pathname: `/${product.productCategory.name}/${product.name}/${product.id}`,
@@ -71,12 +80,13 @@ const ProductList = () => {
                     imageUrl={product.image.url}
                     title={product.name}
                     price={product.price}
+                    unit={product.unit}
                     id={product.id}
                   />
                 </Link>
               </Col>
-            );
-          })
+            ))}
+          </Row>
         ) : filter !== "" ? (
           <Col>
             <p>

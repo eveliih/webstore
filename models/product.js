@@ -37,6 +37,11 @@ Product.init(
       allowNull: true,
       field: "Origin",
     },
+    unit: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      field: "Unit",
+    },
   },
   {
     sequelize,

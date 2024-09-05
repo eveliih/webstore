@@ -42,6 +42,7 @@
 | 29.8. | 2 | Muokkaa olemassaolevan tuotteen määrää, jos lisätään sama tuote ostoskoriin, muuten lisää uusi tuote |
 | 3.9. | 3 | Ostoskorin lisäominaisuuksien lisääminen, korjaaminen ja parantelu |
 | 3.9. | 3 | Tilausyhteenvedon lähettäminen sähköpostilla käyttäjälle ja muita paranteluja |
+| 4.9. | 4 | Tietokantaan tuotteiden lisäämistä ja tietokannan parantelua, kuvien tallentamista serverille |
 | yhteensä | 138 | |
 
 
