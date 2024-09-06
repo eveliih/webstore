@@ -21,7 +21,7 @@ Order.init(
   },
   {
     sequelize,
-    tableName: "order",
+    tableName: "orders", // Table name in the database
     timestamps: true,
   }
 );

@@ -20,9 +20,10 @@ OrderItem.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "cart",
+        model: "orders",
         key: "id",
       },
+      onDelete: "CASCADE",
     },
     product_id: {
       type: DataTypes.INTEGER,

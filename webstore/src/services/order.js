@@ -2,12 +2,12 @@ import axios from "axios";
 const orderUrl = import.meta.env.VITE_ORDER_URL;
 const orderItemUrl = import.meta.env.VITE_ORDERITEM_URL;
 
-const addOrder = async (userId, total, status) => {
+const addOrder = async (userId, total) => {
+  console.log("order service");
   try {
     const response = await axios.post(orderUrl, {
       user_id: userId,
       total,
-      status,
     });
     return response.data;
   } catch (error) {

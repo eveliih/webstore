@@ -85,7 +85,7 @@ const CreateNavBar = () => {
                 >
                   <NavDropdown.Item eventKey="">All products</NavDropdown.Item>
                   <NavDropdown.Item eventKey="fruits">Fruits</NavDropdown.Item>
-                  <NavDropdown.Item eventKey="bread">Bread</NavDropdown.Item>
+                  <NavDropdown.Item eventKey="bakery">Bakery</NavDropdown.Item>
                   <NavDropdown.Item eventKey="drinks">Drinks</NavDropdown.Item>
                 </NavDropdown>
               </Col>

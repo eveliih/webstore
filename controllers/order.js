@@ -2,16 +2,14 @@ const ordersRouter = require("express").Router();
 const { Order } = require("../models");
 
 ordersRouter.post("/", async (req, res) => {
-  const { user_id, total, status } = req.body;
+  const { user_id, total } = req.body;
 
-  if (user_id === undefined || total === undefined || status === undefined) {
-    return res
-      .status(400)
-      .json({ error: "user_id, total, and status are required" });
+  if (user_id === undefined || total === undefined) {
+    return res.status(400).json({ error: "user_id and total are required" });
   }
 
   try {
-    const newOrder = await Order.create({ user_id, total, status });
+    const newOrder = await Order.create({ user_id, total });
     res.status(201).json(newOrder);
   } catch (error) {
     console.error(error);
@@ -46,17 +44,16 @@ ordersRouter.get("/user/:userId", async (req, res) => {
 
 ordersRouter.put("/:orderId", async (req, res) => {
   const { orderId } = req.params;
-  const { total, status } = req.body;
+  const { total } = req.body;
 
-  if (total === undefined || status === undefined) {
-    return res.status(400).json({ error: "total and status are required" });
+  if (total === undefined) {
+    return res.status(400).json({ error: "total is required" });
   }
 
   try {
     const order = await Order.findOne({ where: { id: orderId } });
     if (order) {
       order.total = total;
-      order.status = status;
       await order.save();
       res.status(200).json(order);
     } else {

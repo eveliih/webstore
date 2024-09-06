@@ -4,10 +4,11 @@ const User = require("./user");
 const ProductCategory = require("./productCategory");
 const Cart = require("./cart");
 const CartItem = require("./cartItem");
-const Order = require("./order");
+const Order = require("./order"); // Use singular model name
 const OrderItem = require("./orderItem");
 const { sequelize } = require("../util/db");
 
+// Associations
 Product.hasOne(Image, { onDelete: "CASCADE" });
 Image.belongsTo(Product);
 
@@ -50,4 +51,6 @@ module.exports = {
   ProductCategory,
   Cart,
   CartItem,
+  Order,
+  OrderItem,
 };
