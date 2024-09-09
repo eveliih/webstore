@@ -3,6 +3,7 @@ import ProductDetails from "./ProductDetails";
 import Products from "./Products";
 import Cart from "./Cart";
 import ThankYou from "./ThankYou";
+import Orders from "./Orders";
 
 const RoutesComponent = () => {
   return (
@@ -13,6 +14,7 @@ const RoutesComponent = () => {
       <Route path="/" element={<Products />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/thank-you" element={<ThankYou />} />
+      <Route path="/orders" element={<Orders />} />
     </Routes>
   );
 };
