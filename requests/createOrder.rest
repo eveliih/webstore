@@ -1,0 +1,7 @@
+POST http://localhost:3001/api/order
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "total": 0
+}
