@@ -45,11 +45,14 @@ const ProductList = () => {
       </Row>
       <Row>
         <Col>
-          <p id="introText">
-            Welcome to the Online Food Store. We have a wide variety of products
+          <p>
+            Welcome to the FoodOnline Store. We have a wide variety of products
             for you to choose from. Feel free to browse our selection of fruits,
-            drinks, dairy products, and bread. We hope you find what you are
-            looking for.
+            drinks, and bakery products. We hope you find what you are looking
+            for.
+          </p>
+          <p id="introText">
+            Create an account or log in to place your orders.
           </p>
         </Col>
       </Row>
