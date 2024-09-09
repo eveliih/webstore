@@ -128,6 +128,16 @@ const CreateNavBar = () => {
                       Log out
                     </Button>
                   </Col>
+                  <Col xs="auto" className="mt-4 mt-md-0">
+                    <Button
+                      className="shopping-cart-btn"
+                      type="button"
+                      variant="primary"
+                      onClick={() => navigate("/cart")}
+                    >
+                      Shopping Cart
+                    </Button>
+                  </Col>
                 </>
               ) : (
                 <Col xs="auto">
@@ -140,17 +150,6 @@ const CreateNavBar = () => {
                   </Button>
                 </Col>
               )}
-              <Col xs="auto">
-                <Button
-                  className="shopping-cart-btn"
-                  type="button"
-                  variant="primary"
-                  disabled={!user}
-                  onClick={() => navigate("/cart")}
-                >
-                  Shopping Cart
-                </Button>
-              </Col>
             </Row>
           </Navbar.Collapse>
         </Container>
