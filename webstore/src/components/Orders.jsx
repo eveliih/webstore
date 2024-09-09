@@ -45,11 +45,23 @@ const Orders = () => {
       : { name: "Unknown", price: 0 };
   };
 
+  const formatDate = (dateString) => {
+    const options = {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    };
+    return new Date(dateString).toLocaleDateString("en-US", options);
+  };
+
   return (
     <Container className="mt-5">
       <Row>
         <Col>
-          <h1>Orders</h1>
+          <h1 className="order-heading">Order History</h1>
           {loading ? (
             <Spinner animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
@@ -62,8 +74,7 @@ const Orders = () => {
                 <Card.Body>
                   <Card.Title>Order ID: {order.id}</Card.Title>
                   <Card.Text>
-                    <strong>Order made:</strong>{" "}
-                    {new Date(order.createdAt).toLocaleString()}
+                    <strong>Order made:</strong> {formatDate(order.createdAt)}
                   </Card.Text>
                   <Card.Text>
                     <strong>Order Items:</strong>
@@ -75,14 +86,14 @@ const Orders = () => {
                       );
                       return (
                         <ListGroup.Item key={item.id}>
-                          <strong>Product Name:</strong> {name} -{" "}
-                          {item.quantity} x {Number(price).toFixed(2)} €
+                          <strong>{name}</strong> - {item.quantity} x{" "}
+                          {Number(price).toFixed(2)} €
                         </ListGroup.Item>
                       );
                     })}
                   </ListGroup>
                   <Card.Text>
-                    <strong>Total:</strong> ${order.total.toFixed(2)}
+                    <strong>Total:</strong> {order.total.toFixed(2)} €
                   </Card.Text>
                 </Card.Body>
               </Card>
