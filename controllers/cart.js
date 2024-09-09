@@ -66,4 +66,21 @@ cartsRouter.put("/:cartId", async (req, res) => {
   }
 });
 
+cartsRouter.delete("/:cartId", async (req, res) => {
+  const { cartId } = req.params;
+
+  try {
+    const cart = await Cart.findOne({ where: { id: cartId } });
+    if (cart) {
+      await cart.destroy();
+      res.status(204).end();
+    } else {
+      res.status(404).json({ error: "No cart found with this ID" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ error: error.message });
+  }
+});
+
 module.exports = cartsRouter;

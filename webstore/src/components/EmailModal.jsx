@@ -18,12 +18,10 @@ const EmailModal = ({ show, handleClose, total }) => {
   const user = useSelector((state) => state.user);
 
   const handleSubmitEmail = async (event) => {
-    console.log("submit");
     event.preventDefault();
     setLoading(true);
     setErrorMessage(null);
     try {
-      console.log("try");
       const userId = user ? user.id : null;
       const newOrder = await orderService.addOrder(userId, total);
 
