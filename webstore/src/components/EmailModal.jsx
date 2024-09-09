@@ -6,6 +6,8 @@ import emailService from "../services/email";
 import orderService from "../services/order";
 import { notify } from "../reducers/notificationReducer";
 import { generateEmailBody } from "../helpers/emailCreator";
+import { clearCart } from "../reducers/cartReducer";
+import cartService from "../services/cart";
 
 const EmailModal = ({ show, handleClose, total }) => {
   const [email, setEmail] = useState("");
@@ -16,6 +18,7 @@ const EmailModal = ({ show, handleClose, total }) => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const products = useSelector((state) => state.products);
   const user = useSelector((state) => state.user);
+  const cart = useSelector((state) => state.cart.cart);
 
   const handleSubmitEmail = async (event) => {
     event.preventDefault();
@@ -35,6 +38,14 @@ const EmailModal = ({ show, handleClose, total }) => {
 
       const emailBody = generateEmailBody(total, cartItems, products);
       await emailService.sendEmail(email, "Order Confirmation", emailBody);
+
+      console.log(cart);
+      if (cart && cart.id) {
+        console.log("Deleting cart", cart.id);
+        await cartService.deleteCart(cart.id);
+      }
+
+      dispatch(clearCart());
 
       dispatch(notify("Order done and email sent!", "success"));
       handleClose();

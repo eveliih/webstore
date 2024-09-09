@@ -12,6 +12,7 @@ const Cart = () => {
   const total = useSelector((state) => state.cart.cart?.total || 0);
   const products = useSelector((state) => state.products);
   const [showModal, setShowModal] = useState(false);
+
   const handleRemove = async (id) => {
     const item = cartItems.find((item) => item.id === id);
     const product = products.find((product) => product.id === item.product_id);
