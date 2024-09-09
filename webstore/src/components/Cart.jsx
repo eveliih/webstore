@@ -5,6 +5,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { removeItem, updateTotal } from "../reducers/cartReducer";
 import cartService from "../services/cart";
 import EmailModal from "./EmailModal";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,12 @@ const Cart = () => {
   const total = useSelector((state) => state.cart.cart?.total || 0);
   const products = useSelector((state) => state.products);
   const [showModal, setShowModal] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleShowOrderDetails = () => {
+    navigate("/orders");
+  };
 
   const handleRemove = async (id) => {
     const item = cartItems.find((item) => item.id === id);
@@ -84,10 +91,26 @@ const Cart = () => {
                 </Button>
               </Card.Body>
             </Card>
+            <Button
+              variant="outline-dark"
+              onClick={handleShowOrderDetails}
+              className="orders-btn"
+            >
+              Order history
+            </Button>
           </Col>
         </Row>
       ) : (
-        <p>Your cart is empty.</p>
+        <>
+          <p>Your cart is empty.</p>
+          <Button
+            variant="outline-dark"
+            onClick={handleShowOrderDetails}
+            className="orders-btn"
+          >
+            Order history
+          </Button>
+        </>
       )}
 
       <EmailModal
