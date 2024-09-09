@@ -34,7 +34,7 @@ function ProductsBreadcrumb() {
             onClick={() => !isLast && handleNavigate(url, index + 1)}
             key={url}
           >
-            {value}
+            {decodeURIComponent(value)}
           </Breadcrumb.Item>
         );
       })}
