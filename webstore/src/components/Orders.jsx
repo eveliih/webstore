@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import orderService from "../services/order";
 import { Container, Row, Col, Card, ListGroup } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import Spinner from "react-bootstrap/Spinner";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
   const user = useSelector((state) => state.user);
-  const products = useSelector((state) => state.products); // Access products from Redux state
+  const products = useSelector((state) => state.products);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -17,7 +19,6 @@ const Orders = () => {
             (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
           );
 
-          // Fetch order items for each order
           const ordersWithItems = await Promise.all(
             sortedOrders.map(async (order) => {
               const items = await orderService.getOrderItems(order.id);
@@ -28,6 +29,8 @@ const Orders = () => {
           setOrders(ordersWithItems);
         } catch (error) {
           console.error("Failed to fetch orders", error);
+        } finally {
+          setLoading(false);
         }
       }
     };
@@ -47,7 +50,11 @@ const Orders = () => {
       <Row>
         <Col>
           <h1>Orders</h1>
-          {orders.length === 0 ? (
+          {loading ? (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          ) : orders.length === 0 ? (
             <p>No orders found.</p>
           ) : (
             orders.map((order) => (
@@ -69,7 +76,7 @@ const Orders = () => {
                       return (
                         <ListGroup.Item key={item.id}>
                           <strong>Product Name:</strong> {name} -{" "}
-                          {item.quantity} x {price} €
+                          {item.quantity} x {Number(price).toFixed(2)} €
                         </ListGroup.Item>
                       );
                     })}
