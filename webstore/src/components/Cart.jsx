@@ -45,7 +45,7 @@ const Cart = () => {
 
   return (
     <Container>
-      <h1>Your Shopping Cart</h1>
+      <h1 className="cart-title">Your Shopping Cart</h1>
       {cartItems.length > 0 ? (
         <Row>
           <Col md={8}>
@@ -55,24 +55,25 @@ const Cart = () => {
               );
               return (
                 <Card key={index} className="mb-4">
-                  <Card.Body className="d-flex align-items-center">
+                  <Card.Body className="d-flex flex-column flex-md-row align-items-center">
                     <Card.Img
                       variant="left"
                       src={product.image.url}
                       alt={product.image.alt}
-                      className="cart-item-image"
+                      className="cart-item-image mb-4 mb-md-0"
                     />
                     <div className="flex-grow-1 ms-3">
                       <Card.Title>{product.name}</Card.Title>
                       <Card.Text>
                         Price: {product.price} € <br />
                         Quantity: {item.quantity} <br />
-                        Total: {product.price * item.quantity} €
+                        Total: {(product.price * item.quantity).toFixed(2)} €
                       </Card.Text>
                     </div>
                     <Button
                       variant="danger"
                       onClick={() => handleRemove(item.id)}
+                      className="mt-3 mt-md-0"
                     >
                       Remove
                     </Button>
@@ -81,7 +82,7 @@ const Cart = () => {
               );
             })}
           </Col>
-          <Col md={4}>
+          <Col md={4} className="mt-4 mt-md-0">
             <Card>
               <Card.Body>
                 <Card.Title>Total Sum</Card.Title>
@@ -94,7 +95,7 @@ const Cart = () => {
             <Button
               variant="outline-dark"
               onClick={handleShowOrderDetails}
-              className="orders-btn"
+              className="orders-btn mt-3"
             >
               Order history
             </Button>
