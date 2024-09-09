@@ -49,7 +49,6 @@ const CreateProductDetails = () => {
   const notifyWith = useNotification();
 
   const handleAddToCart = async () => {
-    console.log("handleADDTOCart: ", cart);
     if (!user) {
       notifyWith("Please log in before adding items to the cart.", "error");
       return;

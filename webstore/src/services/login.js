@@ -1,28 +1,25 @@
-import axios from 'axios'
-const loginUrl = import.meta.env.VITE_LOGIN_URL
-const registerUrl = import.meta.env.VITE_REGISTER_URL
-
+import axios from "axios";
+const loginUrl = import.meta.env.VITE_LOGIN_URL;
+const registerUrl = import.meta.env.VITE_REGISTER_URL;
 
 const login = async (credentials) => {
   try {
-    const response = await axios.post(loginUrl, credentials)
-    console.log(response.data)
-    return response.data
+    const response = await axios.post(loginUrl, credentials);
+    return response.data;
   } catch (error) {
-    console.error(error)
-    throw error
+    console.error(error);
+    throw error;
   }
-}
+};
 
 const register = async (newCredentials) => {
-   try {
-    const response = await axios.post(registerUrl, newCredentials)
-    console.log(response.data)
-    return response.data
+  try {
+    const response = await axios.post(registerUrl, newCredentials);
+    return response.data;
   } catch (error) {
-    console.log(error.response.data.error)
-   throw new Error(error.response.data.error)
+    console.log(error.response.data.error);
+    throw new Error(error.response.data.error);
   }
-}
+};
 
-export default { login, register }
+export default { login, register };

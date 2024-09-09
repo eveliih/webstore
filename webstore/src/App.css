@@ -96,6 +96,10 @@ html, body {
   border-color: #0F612A !important;
 }
 
+.orders-btn{
+  margin-top: 2rem;
+}
+
 .cart-button:hover, .shopping-cart-btn:hover, .emailsubmit-btn:hover, .order-btn:hover{
   background-color: #083517 !important;
   border-color: #083517 !important;
