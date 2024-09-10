@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import cartService from "../services/cart";
-import storageService from "../services/storage";
 
 const initialState = {
   cart: null,
@@ -73,7 +72,6 @@ export const initializeCart = (userId) => {
 
 export const clearCart = () => {
   return async (dispatch) => {
-    storageService.removeCart();
     dispatch(clear());
   };
 };

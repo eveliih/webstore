@@ -1,11 +1,12 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { removeItem, updateTotal } from "../reducers/cartReducer";
 import cartService from "../services/cart";
 import EmailModal from "./EmailModal";
 import { useNavigate } from "react-router-dom";
+import { initUser } from "../reducers/userReducer";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -13,8 +14,11 @@ const Cart = () => {
   const total = useSelector((state) => state.cart.cart?.total || 0);
   const products = useSelector((state) => state.products);
   const [showModal, setShowModal] = useState(false);
-
   const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(initUser());
+  }, []);
 
   const handleShowOrderDetails = () => {
     navigate("/orders");

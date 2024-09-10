@@ -12,13 +12,8 @@ const removeUser = () => {
   localStorage.removeItem(KEY);
 };
 
-const removeCart = () => {
-  localStorage.removeItem(KEY);
-};
-
 export default {
   saveUser,
   loadUser,
   removeUser,
-  removeCart,
 };

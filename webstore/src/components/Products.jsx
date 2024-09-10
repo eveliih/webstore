@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import Card from "./Card";
 import { useSelector, useDispatch } from "react-redux";
 import { initializeCart } from "../reducers/cartReducer";
+import { initUser } from "../reducers/userReducer";
 
 const getFilter = (state) => state.filter;
 const getProducts = (state) => state.products;
@@ -35,6 +36,10 @@ const ProductList = () => {
       dispatch(initializeCart(user.id));
     }
   }, [dispatch, user]);
+
+  useEffect(() => {
+    dispatch(initUser());
+  }, []);
 
   return (
     <>

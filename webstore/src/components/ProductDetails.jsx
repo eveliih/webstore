@@ -20,8 +20,11 @@ const CreateProductDetails = () => {
   const cart = useSelector((state) => state.cart.cart);
   const cartitems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
-
   const [quantity, setQuantity] = useState(0);
+
+  useEffect(() => {
+    dispatch(initUser());
+  }, []);
 
   useEffect(() => {
     if (product && cartitems) {
