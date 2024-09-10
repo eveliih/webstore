@@ -54,8 +54,8 @@ const CreateNavBar = () => {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    setSearchTerm(event.target.value);
     dispatch(setFilter(searchTerm));
+    setSearchTerm("");
     navigate("/products");
   };
 
