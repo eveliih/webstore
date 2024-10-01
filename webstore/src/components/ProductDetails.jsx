@@ -5,6 +5,7 @@ import Accordion from "react-bootstrap/Accordion";
 import { useState, useEffect } from "react";
 import cartService from "../services/cart";
 import { useNotification } from "../hooks/index";
+import { initUser } from "../reducers/userReducer";
 import {
   addItem,
   updateTotal,

@@ -45,7 +45,9 @@
 | 4.9. | 4 | Tietokantaan tuotteiden lisäämistä ja tietokannan parantelua, kuvien tallentamista serverille |
 | 5.9. | 6 | Tilaustaulun luominen ja tarvittavien asioiden lisääminen backendiin ja frontendiin, kiitos tilauksesta sivun lisäys |
 | 6.9. | 3 | Korjauksia, tuotteiden lisäämistä tietokantaan |
-| yhteensä | 132 | |
+| 9.9. | 6 | Tilauksen tekemisen parantelu, ostoskorin poistaminen tilauksen yhteydessä, tilaushistorian näyttäminen, paranteluja ja korjauksia |
+| 10.9. | 6 | Tilanhallinnan parantelu ja muu refaktorointi. Dokumentaation laatiminen. |
+| yhteensä | 144 | |
 
 
 
