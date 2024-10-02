@@ -48,8 +48,8 @@
 | 9.9. | 6 | Tilauksen tekemisen parantelu, ostoskorin poistaminen tilauksen yhteydessä, tilaushistorian näyttäminen, paranteluja ja korjauksia |
 | 10.9. | 6 | Tilanhallinnan parantelu ja muu refaktorointi. Dokumentaation laatiminen. |
 | 1.10. | 2 | Refaktorointia, tilanhallinnan viimeistely, local storage |
-| 2.10. | 4 | Refaktorointia, salasanan varmennus tunnusta luodessa, tilauksen kokonaissumman laskemisen korjaus, logon lisäämien, riippuvuuksine päivittämistä ja turvallisuusviestien tutkimista, deploy version manuaalista testaamista |
-| yhteensä | 146 | |
+| 2.10. | 5| Refaktorointia, salasanan varmennus tunnusta luodessa, tilauksen kokonaissumman laskemisen korjaus, logon lisäämien, riippuvuuksine päivittämistä ja turvallisuusviestien tutkimista, deploy version manuaalista testaamista, testien tekemistä |
+| yhteensä | 151 | |
 
 
 
