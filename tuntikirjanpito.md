@@ -47,7 +47,8 @@
 | 6.9. | 3 | Korjauksia, tuotteiden lisäämistä tietokantaan |
 | 9.9. | 6 | Tilauksen tekemisen parantelu, ostoskorin poistaminen tilauksen yhteydessä, tilaushistorian näyttäminen, paranteluja ja korjauksia |
 | 10.9. | 6 | Tilanhallinnan parantelu ja muu refaktorointi. Dokumentaation laatiminen. |
-| yhteensä | 144 | |
+| 1.10. | 2 | Refaktorointia, tilanhallinnan viimeistely, local storage |
+| yhteensä | 146 | |
 
 
 
