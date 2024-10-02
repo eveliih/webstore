@@ -59,7 +59,7 @@ function LoginForm({ setShowLoginForm, setShowRegisterForm }) {
         </Button>
       </Form>
       <Button
-        className="account-button"
+        className="account-button mt-5"
         type="button"
         variant="outline-dark"
         onClick={openRegisterForm}

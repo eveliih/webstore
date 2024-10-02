@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 import orderService from "../services/order";
 import { Container, Row, Col, Card, ListGroup } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
+import { initUser } from "../reducers/userReducer";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const user = useSelector((state) => state.user);
   const products = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(initUser());
+  }, []);
 
   useEffect(() => {
     const fetchOrders = async () => {
