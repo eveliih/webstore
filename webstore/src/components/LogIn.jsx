@@ -45,16 +45,22 @@ function LoginForm({ setShowLoginForm, setShowRegisterForm }) {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-3">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
+            id="password"
             placeholder="Password"
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />
         </Form.Group>
-        <Button className="green-button" variant="primary" type="submit">
+        <Button
+          className="green-button"
+          id="login-button"
+          variant="primary"
+          type="submit"
+        >
           Log in
         </Button>
       </Form>
