@@ -73,7 +73,7 @@ const CreateNavBar = () => {
             style={{ cursor: "pointer" }}
           >
             <img
-              src="../public/fruits.png"
+              src="/fruits.png"
               alt="Fruits"
               style={{ width: "30px", height: "30px", marginRight: "10px" }}
             />
