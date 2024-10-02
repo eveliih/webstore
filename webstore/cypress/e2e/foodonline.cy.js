@@ -19,4 +19,22 @@ describe("Food online app", () => {
 
     cy.contains("Signed in as: Test");
   });
+
+  it("products are shown", function () {
+    cy.contains("Watermelon");
+    cy.contains("Water");
+    cy.contains("Roll");
+  });
+
+  it("categories are shown and work", function () {
+    cy.contains("Products").click();
+    cy.contains("Fruits");
+    cy.contains("Drinks");
+
+    cy.contains("Bakery").click();
+    cy.contains("Roll");
+
+    cy.get("body").should("not.contain", "Orange");
+    cy.get("body").should("not.contain", "Water");
+  });
 });
