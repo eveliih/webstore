@@ -6,11 +6,7 @@ import { useState, useEffect } from "react";
 import cartService from "../services/cart";
 import { useNotification } from "../hooks/index";
 import { initUser } from "../reducers/userReducer";
-import {
-  addItem,
-  updateTotal,
-  updateItemQuantity,
-} from "../reducers/cartReducer";
+import { addItem, updateItemQuantity } from "../reducers/cartReducer";
 
 const CreateProductDetails = () => {
   const { id } = useParams();
@@ -101,7 +97,6 @@ const CreateProductDetails = () => {
       }
 
       await cartService.updateCartTotal(cart.id, newTotal);
-      dispatch(updateTotal(newTotal));
 
       notifyWith("Item added to cart successfully!", "success");
     } catch (error) {

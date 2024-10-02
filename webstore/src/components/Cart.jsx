@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col, Card, Button, Spinner } from "react-bootstrap";
-import {
-  removeItem,
-  updateTotal,
-  initializeCart,
-} from "../reducers/cartReducer";
+import { removeItem, initializeCart } from "../reducers/cartReducer";
 import { initializeProducts } from "../reducers/productReducer";
 import cartService from "../services/cart";
 import EmailModal from "./EmailModal";
@@ -15,7 +11,6 @@ import { initUser } from "../reducers/userReducer";
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const total = useSelector((state) => state.cart.cart?.total || 0);
   const products = useSelector((state) => state.products);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -32,7 +27,7 @@ const Cart = () => {
       setLoading(false);
     };
     initialize();
-  }, []);
+  }, [dispatch]);
 
   const handleShowOrderDetails = () => {
     navigate("/orders");
@@ -43,13 +38,12 @@ const Cart = () => {
     const product = products.find((product) => product.id === item.product_id);
 
     dispatch(removeItem(id));
-    dispatch(updateTotal(total - product.price * item.quantity));
 
     try {
       await cartService.deleteCartItem(id);
       await cartService.updateCartTotal(
         item.cart_id,
-        total - product.price * item.quantity
+        calculateTotal(cartItems.filter((item) => item.id !== id))
       );
     } catch (error) {
       console.error("Failed to remove item from database", error);
@@ -58,6 +52,15 @@ const Cart = () => {
 
   const handlePayment = () => {
     setShowModal(true);
+  };
+
+  const calculateTotal = (items) => {
+    return items.reduce((sum, item) => {
+      const product = products.find(
+        (product) => product.id === item.product_id
+      );
+      return sum + (product ? product.price * item.quantity : 0);
+    }, 0);
   };
 
   if (loading) {
@@ -70,6 +73,8 @@ const Cart = () => {
       </Container>
     );
   }
+
+  const total = calculateTotal(cartItems);
 
   return (
     <Container>

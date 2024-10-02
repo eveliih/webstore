@@ -35,10 +35,6 @@ const cartSlice = createSlice({
       storageService.saveCart(state.cart);
       storageService.saveCartItems(state.cartItems);
     },
-    updateTotal: (state, action) => {
-      state.cart.total = action.payload;
-      storageService.saveCart(state.cart);
-    },
     updateItemQuantity: (state, action) => {
       const { id, quantity } = action.payload;
       const item = state.cartItems.find((item) => item.id === id);
@@ -58,7 +54,6 @@ export const {
   addItem,
   removeItem,
   clear,
-  updateTotal,
   updateItemQuantity,
 } = cartSlice.actions;
 

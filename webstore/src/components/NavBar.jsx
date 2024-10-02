@@ -72,6 +72,11 @@ const CreateNavBar = () => {
             onClick={handleBrandClick}
             style={{ cursor: "pointer" }}
           >
+            <img
+              src="../public/fruits.png"
+              alt="Fruits"
+              style={{ width: "30px", height: "30px", marginRight: "10px" }}
+            />
             FoodOnline
           </Navbar.Brand>
           <Navbar.Toggle />
