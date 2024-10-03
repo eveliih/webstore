@@ -1,4 +1,5 @@
 name: Deployment pipeline
+
 on:
   push:
     branches:
@@ -23,7 +24,6 @@ jobs:
         
       - name: Build the frontend
         run: npm run build:ui:ubuntu --if-present
-
         env:
           VITE_APP_BASE_URL: /api/products
           VITE_LOGIN_URL: /api/login
@@ -36,22 +36,29 @@ jobs:
 
       - name: Print Cypress config file
         run: cat ./webstore/cypress.config.js
+
+      - name: Print current working directory
+        run: pwd
+
+      - name: List files in current directory
+        run: ls -la
+
+      - name: Print Cypress version
+        run: npx cypress --version
     
       - name: e2e tests
         uses: cypress-io/github-action@v6
         with:
-           start: npm run start-prod
-           wait-on: 'http://localhost:3001'
-         
-           command: npm run test:e2e
-           config-file: ./webstore/cypress.config.js
-           browser: chrome
-           
+          start: npm run start-prod
+          wait-on: 'http://localhost:3001'
+          working-directory: ./webstore
+          command: npm run test:e2e
+          config-file: cypress.config.js
+          browser: chrome
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           ELECTRON_EXTRA_LAUNCH_ARGS: '--disable-gpu'
         
-      
       - name: Zip artifact for deployment
         run: zip -r release.zip dist controllers models util app.js index.js package.json package-lock.json
 
@@ -94,4 +101,3 @@ jobs:
           app-name: 'foodonline'
           slot-name: 'Production'
           package: .
-          
