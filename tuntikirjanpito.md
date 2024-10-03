@@ -49,8 +49,8 @@
 | 10.9. | 6 | Tilanhallinnan parantelu ja muu refaktorointi. Dokumentaation laatiminen. |
 | 1.10. | 2 | Refaktorointia, tilanhallinnan viimeistely, local storage |
 | 2.10. | 5| Refaktorointia, salasanan varmennus tunnusta luodessa, tilauksen kokonaissumman laskemisen korjaus, logon lisäämien, riippuvuuksine päivittämistä ja turvallisuusviestien tutkimista, deploy version manuaalista testaamista, testien tekemistä |
-| 3.10. | 5 | e2e testien ja tarvittavien muokkauksien tekemistä, loputonta yritystä saada testit toimimaan pipelinessa |
-| yhteensä | 156 | |
+| 3.10. | 8 | e2e testien ja tarvittavien muokkauksien tekemistä, loputonta yritystä saada testit toimimaan pipelinessa, workflown korjaus ja toimivat e2e testit pipelineen! |
+| yhteensä | 159 | |
 
 
 
