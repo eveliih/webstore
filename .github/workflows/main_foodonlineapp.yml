@@ -1,5 +1,4 @@
 name: Deployment pipeline
-
 on:
   push:
     branches:
@@ -10,12 +9,14 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  deployment_pipeline:
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v3
+  build:
+    runs-on: ubuntu-latest
 
-      - uses: actions/setup-node@v2
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js version
+        uses: actions/setup-node@v3
         with:
           node-version: '20.x'
 
@@ -23,13 +24,14 @@ jobs:
         run: |
           npm install
           npm run build:ui:ubuntu --if-present
-
+          #cd ./webstore
       - name: e2e tests
         uses: cypress-io/github-action@v2
         with: 
           command: npm run test:e2e
           start: npm run start-prod
           wait-on: http://localhost:3001
+      
         env:
           VITE_APP_BASE_URL: /api/products
           VITE_LOGIN_URL: /api/login
@@ -39,6 +41,7 @@ jobs:
           VITE_EMAIL_URL: /api/email
           VITE_ORDER_URL: /api/order
           VITE_ORDERITEM_URL: /api/orderItem
+      
 
       - name: Zip artifact for deployment
         run: zip -r release.zip dist controllers models util app.js index.js package.json package-lock.json
@@ -52,7 +55,7 @@ jobs:
   deploy:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
-    needs: deployment_pipeline
+    needs: build
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
@@ -82,3 +85,4 @@ jobs:
           app-name: 'foodonline'
           slot-name: 'Production'
           package: .
+          
