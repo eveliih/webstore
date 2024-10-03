@@ -12,8 +12,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "cypress:open": "cypress open",
-    "test:e2e": "cypress run",
-    "start-prod": "cd .. && cross-env NODE_ENV=production node index.js"
+    "test:e2e": "cypress run"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",

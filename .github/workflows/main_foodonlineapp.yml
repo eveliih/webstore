@@ -20,16 +20,16 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: npm install, build, and test
+      - name: npm install and build
         run: |
           npm install
           npm run build:ui:ubuntu --if-present
-          cd ./webstore
+          #cd ./webstore
       - name: e2e tests
         uses: cypress-io/github-action@v2
         with: 
           command: npm run test:e2e
-          start: cd .. && npm run start-prod
+          start: npm run start-prod
           wait-on: http://localhost:3001
       
         env:
