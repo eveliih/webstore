@@ -4,7 +4,7 @@
   "description": "backend for webstore project",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node index.js",
+    "start-prod": "cross-env NODE_ENV=production node index.js",
     "start:test": "cross-env NODE_ENV=test node index.js",
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "build:ui": "cd ./webstore/ && npm install && npm run build  && copy .\\web.config .\\dist && xcopy /I/E dist ..\\dist",
