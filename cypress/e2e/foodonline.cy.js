@@ -1,6 +1,6 @@
 describe("Food online app", () => {
   beforeEach(function () {
-    cy.visit("http://localhost:5173");
+    cy.visit("http://localhost:3001");
   });
 
   it("the front page can be opened", () => {
