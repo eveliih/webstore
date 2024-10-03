@@ -20,6 +20,7 @@ const ProductList = () => {
   const user = useSelector(getUser);
 
   useEffect(() => {
+    setIsLoading(true);
     const filteredProducts = allProducts.filter((product) => {
       const matchesFilter =
         filter === "" ||
@@ -39,7 +40,7 @@ const ProductList = () => {
 
   useEffect(() => {
     dispatch(initUser());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
