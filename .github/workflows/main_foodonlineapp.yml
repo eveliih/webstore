@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
   pull_request:
     branches: [main]
     types: [opened, synchronize]
@@ -11,27 +10,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
 
-      - name: npm install and build
-        run: |
-          npm install
-          npm run build:ui:ubuntu --if-present
-    
-      - name: e2e tests
-        run: | 
-          cd ../..
-          npm run start-prod &
-          npx wait-on http://localhost:3001
-          npm run test:e2e
-        
+      - name: Install dependencies
+        run: npm install
+      - name: Build the app
+        run: npm run build:ui:ubuntu --if-present
+
         env:
           VITE_APP_BASE_URL: /api/products
           VITE_LOGIN_URL: /api/login
@@ -41,9 +31,15 @@ jobs:
           VITE_EMAIL_URL: /api/email
           VITE_ORDER_URL: /api/order
           VITE_ORDERITEM_URL: /api/orderItem
+    
+      - name: e2e tests
+        uses: cypress-io/github-action@v5
+        with:
+           command: npm run test:e2e
+           start: npm run start-prod
+           wait-on: http://localhost:3001
         
       
-
       - name: Zip artifact for deployment
         run: zip -r release.zip dist controllers models util app.js index.js package.json package-lock.json
 
