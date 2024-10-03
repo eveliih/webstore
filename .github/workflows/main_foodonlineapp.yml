@@ -20,7 +20,7 @@ jobs:
 
       - name: Install backend dependencies
         run: npm install
-
+        
       - name: Build the frontend
         run: npm run build:ui:ubuntu --if-present
 
@@ -34,16 +34,15 @@ jobs:
           VITE_ORDER_URL: /api/order
           VITE_ORDERITEM_URL: /api/orderItem
     
-      - name: Start backend server
-        run: npm run start-prod &
+      - name: e2e tests
+        uses: cypress-io/github-action@v5
+        with:
+           project: ./webstore
+           command: npm run test:e2e
+           start: npm run start-prod
+           wait-on: http://localhost:3001
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
-      - name: Wait for backend to be ready
-        run: npx wait-on http://localhost:3001
-
-      - name: e2e tests
-        run: npm run test:e2e
         
       
       - name: Zip artifact for deployment
