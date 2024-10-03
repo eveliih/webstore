@@ -33,6 +33,9 @@ jobs:
           VITE_EMAIL_URL: /api/email
           VITE_ORDER_URL: /api/order
           VITE_ORDERITEM_URL: /api/orderItem
+
+      - name: List files in webstore directory
+        run: ls -la ./webstore
     
       - name: e2e tests
         uses: cypress-io/github-action@v6
