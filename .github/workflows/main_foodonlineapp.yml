@@ -51,7 +51,6 @@ jobs:
         with:
           start: npm run start-prod
           wait-on: 'http://localhost:3001'
-          working-directory: ./webstore
           command: npm run test:e2e
           config-file: cypress.config.js
           browser: chrome
