@@ -37,6 +37,7 @@ jobs:
       - name: e2e tests
         uses: cypress-io/github-action@v5
         with:
+           project: ./webstore
            command: npm run test:e2e
            start: npm run start-prod
            wait-on: http://localhost:3001
