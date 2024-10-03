@@ -42,9 +42,11 @@ jobs:
            project: ./webstore
            command: npm run test:e2e
            config-file: cypress.config.js
+           browser: chrome
            
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          ELECTRON_EXTRA_LAUNCH_ARGS: '--disable-gpu'
         
       
       - name: Zip artifact for deployment
