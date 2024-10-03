@@ -4,13 +4,18 @@
   "description": "backend for webstore project",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node index.js",
+    "start": "node index.js", 
+    "start-prod": "NODE_ENV=production node index.js",
+    "start-prod-locally": "cross-env NODE_ENV=production node index.js",
+    "start:test": "cross-env NODE_ENV=test node index.js",
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "build:ui": "cd ./webstore/ && npm install && npm run build  && copy .\\web.config .\\dist && xcopy /I/E dist ..\\dist",
     "build:ui:ubuntu": "rm -rf dist && cd ./webstore/ && npm install && npm run build && cp -r dist ../",
     "test": "cross-env NODE_ENV=test node --test --test-concurrency=1",
     "lint:backend": "eslint .",
-    "lint:frontend": "eslint ./webstore --ext .js,.jsx"
+    "lint:frontend": "eslint ./webstore --ext .js,.jsx",
+    "test:e2e": "cypress run"
+
   },
   "author": "Eveliina",
   "license": "ISC",
@@ -31,6 +36,7 @@
     "eslint": "^9.1.1",
     "globals": "^15.1.0",
     "nodemon": "^3.1.0",
-    "supertest": "^7.0.0"
+    "supertest": "^7.0.0",
+    "cypress": "^10.0.0"
   }
 }
