@@ -41,7 +41,7 @@ jobs:
            wait-on: 'http://localhost:3001'
            project: ./webstore
            command: npm run test:e2e
-           config-file: ./webstore/cypress.config.js
+           config-file: cypress.config.js
            
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
