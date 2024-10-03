@@ -14,7 +14,7 @@
     "test": "cross-env NODE_ENV=test node --test --test-concurrency=1",
     "lint:backend": "eslint .",
     "lint:frontend": "eslint ./webstore --ext .js,.jsx",
-    "test:e2e": "cd ./webstore/ && npm install && cypress run"
+    "test:e2e": "cypress run"
 
   },
   "author": "Eveliina",
