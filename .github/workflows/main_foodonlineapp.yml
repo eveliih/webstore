@@ -1,8 +1,4 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: Build, test and deploy Node.js app to Azure Web App - FoodOnlineApp
-
+name: Deployment pipeline
 on:
   push:
     branches:
@@ -27,10 +23,15 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm install
-          # npm run test --if-present
           npm run build:ui:ubuntu --if-present
           cd ./webstore
-          # npm run test --if-present
+      - name:
+        uses: cypress-io/github-action@v2
+        with:
+          command: npm run test:e2e
+          start: npm run start-prod
+          wait-on: http://localhost:3001
+      
         env:
           VITE_APP_BASE_URL: /api/products
           VITE_LOGIN_URL: /api/login

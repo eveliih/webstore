@@ -20,7 +20,7 @@ describe("Food online app", () => {
     cy.contains("Signed in as: Test");
   });
 
-  it.only("login fails with wrong password", function () {
+  it("login fails with wrong password", function () {
     cy.contains("Log in").click();
     cy.get("#username").type("test");
     cy.get("#password").type("wrong");
@@ -45,5 +45,13 @@ describe("Food online app", () => {
 
     cy.get("body").should("not.contain", "Orange");
     cy.get("body").should("not.contain", "Water");
+  });
+
+  it("product details are shown", function () {
+    cy.contains("Watermelon").click();
+    cy.contains("Watermelon");
+    cy.contains("Price: 1.99 €/kg");
+    cy.contains("Ingredients");
+    cy.contains("Origin");
   });
 });
