@@ -24,14 +24,14 @@ jobs:
         run: |
           npm install
           npm run build:ui:ubuntu --if-present
-          cd ..
+    
       - name: e2e tests
-        uses: cypress-io/github-action@v2
-        with: 
-          command: npm run test:e2e
-          start: npm run start-prod
-          wait-on: http://localhost:3001
-      
+        run: | 
+          cd ./webstore
+          npm run start-prod &
+          npx wait-on http://localhost:3001
+          npm run test:e2e
+        
         env:
           VITE_APP_BASE_URL: /api/products
           VITE_LOGIN_URL: /api/login
@@ -41,6 +41,7 @@ jobs:
           VITE_EMAIL_URL: /api/email
           VITE_ORDER_URL: /api/order
           VITE_ORDERITEM_URL: /api/orderItem
+        
       
 
       - name: Zip artifact for deployment
