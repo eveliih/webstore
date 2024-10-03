@@ -27,7 +27,7 @@ jobs:
     
       - name: e2e tests
         run: | 
-          cd ..
+          cd ../..
           npm run start-prod &
           npx wait-on http://localhost:3001
           npm run test:e2e
