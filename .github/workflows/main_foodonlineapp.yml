@@ -42,9 +42,9 @@ jobs:
         with:
            start: npm run start-prod
            wait-on: 'http://localhost:3001'
-           project: ./webstore
+         
            command: npm run test:e2e
-           config-file: cypress.config.js
+           config-file: ./webstore/cypress.config.js
            browser: chrome
            
         env:
