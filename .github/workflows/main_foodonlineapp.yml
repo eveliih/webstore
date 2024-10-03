@@ -17,9 +17,9 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: Install dependencies
+      - name: Install backend dependencies
         run: npm install
-      - name: Build the app
+      - name: Build the frontend
         run: npm run build:ui:ubuntu --if-present
 
         env:
