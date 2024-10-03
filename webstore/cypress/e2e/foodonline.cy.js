@@ -11,13 +11,22 @@ describe("Food online app", () => {
     cy.contains("Create an account or log in to place your orders.");
   });
 
-  it("login form can be opened", function () {
+  it("login works", function () {
     cy.contains("Log in").click();
     cy.get("#username").type("test");
     cy.get("#password").type("Test1234!");
     cy.get("#login-button").click();
 
     cy.contains("Signed in as: Test");
+  });
+
+  it.only("login fails with wrong password", function () {
+    cy.contains("Log in").click();
+    cy.get("#username").type("test");
+    cy.get("#password").type("wrong");
+    cy.get("#login-button").click();
+
+    cy.contains("Wrong username or password.");
   });
 
   it("products are shown", function () {
