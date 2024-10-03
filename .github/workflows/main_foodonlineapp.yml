@@ -35,12 +35,13 @@ jobs:
           VITE_ORDERITEM_URL: /api/orderItem
     
       - name: e2e tests
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
            start: npm run start-prod
            wait-on: 'http://localhost:3001'
            project: ./webstore
            command: npm run test:e2e
+           config-file: ./webstore/cypress.config.js
            
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
