@@ -33,18 +33,6 @@ jobs:
           VITE_EMAIL_URL: /api/email
           VITE_ORDER_URL: /api/order
           VITE_ORDERITEM_URL: /api/orderItem
-
-      - name: Print Cypress config file
-        run: cat ./webstore/cypress.config.js
-
-      - name: Print current working directory
-        run: pwd
-
-      - name: List files in current directory
-        run: ls -la
-
-      - name: Print Cypress version
-        run: npx cypress --version
     
       - name: e2e tests
         uses: cypress-io/github-action@v6
