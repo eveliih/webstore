@@ -8,7 +8,7 @@
     "start:test": "cross-env NODE_ENV=test node index.js",
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "build:ui": "cd ./webstore/ && npm install && npm run build  && copy .\\web.config .\\dist && xcopy /I/E dist ..\\dist",
-    "build:ui:ubuntu": "rm -rf dist && cd ./webstore/ && npm install && npm run build && cp -r dist ../ && cd ..",
+    "build:ui:ubuntu": "rm -rf dist && cd ./webstore/ && npm install && npm run build && cp -r dist ../",
     "test": "cross-env NODE_ENV=test node --test --test-concurrency=1",
     "lint:backend": "eslint .",
     "lint:frontend": "eslint ./webstore --ext .js,.jsx",
