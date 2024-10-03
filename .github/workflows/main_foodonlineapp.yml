@@ -33,19 +33,13 @@ jobs:
           VITE_EMAIL_URL: /api/email
           VITE_ORDER_URL: /api/order
           VITE_ORDERITEM_URL: /api/orderItem
-
-      - name: Start backend server
-        run: npm run start-prod &
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
     
       - name: e2e tests
         uses: cypress-io/github-action@v5
         with:
-           wait-on: 'http://localhost:3001'
-           project: ./webstore
            command: npm run test:e2e
+           start: npm run start-prod
+           wait-on: http://localhost:3000
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         
