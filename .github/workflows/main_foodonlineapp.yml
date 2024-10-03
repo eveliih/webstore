@@ -45,7 +45,7 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           ELECTRON_EXTRA_LAUNCH_ARGS: '--disable-gpu'
-          JWT_SECRET: ${{ secrets.SECRET }} 
+          SECRET: ${{ secrets.SECRET }} 
         
       - name: Zip artifact for deployment
         run: zip -r release.zip dist controllers models util app.js index.js package.json package-lock.json
