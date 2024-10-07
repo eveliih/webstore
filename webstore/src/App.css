@@ -18,6 +18,7 @@
 #root {
   margin: 0px ;
   padding: 0px ;
+  min-width: 70%;
 }
 
 html, body {
@@ -57,6 +58,11 @@ html, body {
 #productDetailsImage{
    width: 16rem;
    height: 16rem;
+}
+
+.product-details-container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .quantity-control {
