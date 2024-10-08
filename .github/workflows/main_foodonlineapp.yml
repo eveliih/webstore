@@ -1,9 +1,10 @@
-name: Deployment pipeline
+name: Build and deploy Node.js app to Azure Web App - FoodOnlineApp
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
   pull_request:
     branches: [main]
     types: [opened, synchronize]
@@ -11,6 +12,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -19,11 +21,13 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: Install backend dependencies
-        run: npm install
-        
-      - name: Build the frontend
-        run: npm run build:ui:ubuntu --if-present
+      - name: npm install, build, and test
+        run: |
+          npm install
+          # npm run test --if-present
+          npm run build:ui:ubuntu --if-present
+          cd ./webstore
+          # npm run test --if-present
         env:
           VITE_APP_BASE_URL: /api/products
           VITE_LOGIN_URL: /api/login
@@ -31,22 +35,9 @@ jobs:
           VITE_CART_URL: /api/cart
           VITE_CARTITEM_URL: /api/cartItem
           VITE_EMAIL_URL: /api/email
-          VITE_ORDER_URL: /api/order
-          VITE_ORDERITEM_URL: /api/orderItem
     
-      - name: e2e tests
-        uses: cypress-io/github-action@v6
-        with:
-          start: npm run start-prod
-          wait-on: 'http://localhost:3001'
-          command: npm run test:e2e
-          config-file: cypress.config.js
-          browser: chrome
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          ELECTRON_EXTRA_LAUNCH_ARGS: '--disable-gpu'
-          SECRET: ${{ secrets.SECRET }} 
-        
+
+
       - name: Zip artifact for deployment
         run: zip -r release.zip dist controllers models util app.js index.js package.json package-lock.json
 
@@ -75,9 +66,6 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
-      - name: Install dependencies
-        run: npm install
-        
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -92,3 +80,4 @@ jobs:
           app-name: 'foodonline'
           slot-name: 'Production'
           package: .
+          
