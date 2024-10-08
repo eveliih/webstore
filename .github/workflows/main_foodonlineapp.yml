@@ -53,30 +53,27 @@ jobs:
 
   deploy:
     if: github.event_name == 'push'
-    runs-on: ubuntu-latest
     needs: build
+    runs-on: ubuntu-latest
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write
-    
+      id-token: write #This is required for requesting the JWT
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: node-app
-
       - name: Unzip artifact for deployment
         run: unzip release.zip
-
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6FC6E36A06E5437BBA220646AA6AD2AE }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_961F7C40868A411FA2C870653752940E }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A9D906C76E4D4A0985A292D995D74871 }}
-      
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6802E4526DB5450CA72F4B246B56021F }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CC270E454CBE4E23A4679B276F3C4684 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A9C56123886D4F3F83AFCE2DA9870B7B }}
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
