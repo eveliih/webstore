@@ -38,7 +38,6 @@ jobs:
     
       - name: Remove Cypress and other dev dependencies
         run: |
-          npm prune --production
           cd ./webstore
           npm prune --production
 
@@ -46,7 +45,7 @@ jobs:
         run: zip -r release.zip dist controllers models util app.js index.js package.json package-lock.json
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: node-app
           path: release.zip
@@ -59,12 +58,13 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
+      id-token: write # This is required for requesting the JWT
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: node-app
+
       - name: Unzip artifact for deployment
         run: unzip release.zip
       
@@ -81,4 +81,3 @@ jobs:
           app-name: 'foodonline'
           slot-name: 'Production'
           package: .
-          
