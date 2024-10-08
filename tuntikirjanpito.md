@@ -51,7 +51,8 @@
 | 2.10. | 5| Refaktorointia, salasanan varmennus tunnusta luodessa, tilauksen kokonaissumman laskemisen korjaus, logon lisäämien, riippuvuuksine päivittämistä ja turvallisuusviestien tutkimista, deploy version manuaalista testaamista, testien tekemistä |
 | 3.10. | 8 | e2e testien ja tarvittavien muokkauksien tekemistä, loputonta yritystä saada testit toimimaan pipelinessa, workflown korjaus ja toimivat e2e testit pipelineen! |
 | 4.10. | 1 | Footerin tekeminen, manuaalista testaamista |
-| yhteensä | 159 | |
+| 7.10. | 2 | Viimeistelyä, css asetuksia yhtäläisen sivuleveyden pitämiseksi, footerin fiksaus alareunaan, deploy ongelman selvittelyä |
+| yhteensä | 161 | |
 
 
 

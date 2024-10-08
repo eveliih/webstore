@@ -21,7 +21,7 @@ const CreateProductDetails = () => {
 
   useEffect(() => {
     dispatch(initUser());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (product && cartitems) {
@@ -116,58 +116,63 @@ const CreateProductDetails = () => {
   const totalPrice = (price * quantity).toFixed(2);
 
   return (
-    <Container>
-      <Row>
-        <Col>
-          <img
-            id="productDetailsImage"
-            src={product.image.url}
-            alt={product.name}
-          />
-        </Col>
-        <Col>
-          <h1>{product.name}</h1>
-          <h2>
-            Price: {product.price} €/{product.unit}
-          </h2>
-          <h3 className="total">Total: {totalPrice} €</h3>
-          <div className="quantity-control">
-            <Button variant="light" onClick={decreaseQuantity}>
-              -
-            </Button>
-            <Form.Control
-              className="hide-input-arrows quantity-input"
-              type="number"
-              min="0"
-              value={quantity}
-              onChange={handleInputChange}
-            />
-            <Button variant="light" onClick={increaseQuantity}>
-              +
-            </Button>
-          </div>
+    <Container fluid>
+      <Row className="justify-content-center">
+        <Col xs={12} md={10} lg={8}>
+          <Row>
+            <Col md={6}>
+              <img
+                id="productDetailsImage"
+                src={product.image.url}
+                alt={product.name}
+                className="img-fluid"
+              />
+            </Col>
+            <Col md={6}>
+              <h1>{product.name}</h1>
+              <h2>
+                Price: {product.price} €/{product.unit}
+              </h2>
+              <h3 className="total">Total: {totalPrice} €</h3>
+              <div className="quantity-control">
+                <Button variant="light" onClick={decreaseQuantity}>
+                  -
+                </Button>
+                <Form.Control
+                  className="hide-input-arrows quantity-input"
+                  type="number"
+                  min="0"
+                  value={quantity}
+                  onChange={handleInputChange}
+                />
+                <Button variant="light" onClick={increaseQuantity}>
+                  +
+                </Button>
+              </div>
 
-          <Button
-            onClick={handleAddToCart}
-            disabled={quantity === 0}
-            className="cart-button"
-          >
-            Add to Cart
-          </Button>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Accordion defaultActiveKey="0" className="custom-accordion">
-            <Accordion.Item eventKey="1">
-              <Accordion.Header>Ingredients</Accordion.Header>
-              <Accordion.Body>{product.ingredients}</Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="2">
-              <Accordion.Header>Origin</Accordion.Header>
-              <Accordion.Body>{product.origin}</Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
+              <Button
+                onClick={handleAddToCart}
+                disabled={quantity === 0}
+                className="cart-button"
+              >
+                Add to Cart
+              </Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Accordion defaultActiveKey="0" className="custom-accordion">
+                <Accordion.Item eventKey="1">
+                  <Accordion.Header>Ingredients</Accordion.Header>
+                  <Accordion.Body>{product.ingredients}</Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="2">
+                  <Accordion.Header>Origin</Accordion.Header>
+                  <Accordion.Body>{product.origin}</Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </Container>
