@@ -5,18 +5,12 @@ import Card from "./Card";
 import { useSelector, useDispatch } from "react-redux";
 import { initializeCart } from "../reducers/cartReducer";
 import { initUser } from "../reducers/userReducer";
+import { matchesFilter } from "../helpers/utils";
+import LoadingMessage from "./LoadingMessage";
 
 const getFilter = (state) => state.filter;
 const getProducts = (state) => state.products;
 const getUser = (state) => state.user;
-
-const matchesFilter = (product, filter) => {
-  return (
-    filter === "" ||
-    product.productCategory.name.toLowerCase() === filter.toLowerCase() ||
-    product.name.toLowerCase().includes(filter.toLowerCase())
-  );
-};
 
 const ProductList = () => {
   const { category } = useParams();
@@ -68,9 +62,7 @@ const ProductList = () => {
       </Row>
       <Row>
         {isLoading ? (
-          <Col>
-            <p>Loading products...</p>
-          </Col>
+          <LoadingMessage />
         ) : products.length > 0 ? (
           <Row>
             {products.map((product) => (
