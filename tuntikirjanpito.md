@@ -52,7 +52,8 @@
 | 3.10. | 8 | e2e testien ja tarvittavien muokkauksien tekemistä, loputonta yritystä saada testit toimimaan pipelinessa, workflown korjaus ja toimivat e2e testit pipelineen! |
 | 4.10. | 1 | Footerin tekeminen, manuaalista testaamista |
 | 7.10. | 2 | Viimeistelyä, css asetuksia yhtäläisen sivuleveyden pitämiseksi, footerin fiksaus alareunaan, deploy ongelman selvittelyä |
-| yhteensä | 161 | |
+| 8.10. | 6 | Deployn korjaamista |
+| yhteensä | 167 | |
 
 
 
