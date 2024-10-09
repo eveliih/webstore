@@ -29,10 +29,8 @@ const handleAxiosError = (error) => {
     );
     return { error: error.response.data.error || error.response.statusText };
   } else if (error.request) {
-    console.error("Error: No response received from server");
     return { error: "No response received from server" };
   } else {
-    console.error(`Error: ${error.message}`);
     return { error: error.message };
   }
 };

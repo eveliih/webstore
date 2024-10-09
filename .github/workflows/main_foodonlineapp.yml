@@ -47,7 +47,6 @@ jobs:
           browser: chrome
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-         # ELECTRON_EXTRA_LAUNCH_ARGS: '--disable-gpu'
           SECRET: ${{ secrets.SECRET }} 
 
 

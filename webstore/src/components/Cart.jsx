@@ -45,9 +45,7 @@ const Cart = () => {
         item.cart_id,
         calculateTotal(cartItems.filter((item) => item.id !== id))
       );
-    } catch (error) {
-      console.error("Failed to remove item from database", error);
-    }
+    } catch (error) {}
   };
 
   const handlePayment = () => {

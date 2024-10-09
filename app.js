@@ -3,13 +3,11 @@ const path = require("path");
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const { connectToDatabase } = require("./util/db");
 
 app.use(cors());
 app.use(express.static("dist"));
 app.use(bodyParser.json());
-
-const { PORT } = require("./util/config");
-const { connectToDatabase } = require("./util/db");
 
 const productsRouter = require("./controllers/products");
 const imagesRouter = require("./controllers/images");
