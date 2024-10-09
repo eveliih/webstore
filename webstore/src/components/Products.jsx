@@ -10,6 +10,14 @@ const getFilter = (state) => state.filter;
 const getProducts = (state) => state.products;
 const getUser = (state) => state.user;
 
+const matchesFilter = (product, filter) => {
+  return (
+    filter === "" ||
+    product.productCategory.name.toLowerCase() === filter.toLowerCase() ||
+    product.name.toLowerCase().includes(filter.toLowerCase())
+  );
+};
+
 const ProductList = () => {
   const { category } = useParams();
   const filter = useSelector(getFilter);
@@ -21,13 +29,9 @@ const ProductList = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    const filteredProducts = allProducts.filter((product) => {
-      const matchesFilter =
-        filter === "" ||
-        product.productCategory.name.toLowerCase() === filter.toLowerCase() ||
-        product.name.toLowerCase().includes(filter.toLowerCase());
-      return matchesFilter;
-    });
+    const filteredProducts = allProducts.filter((product) =>
+      matchesFilter(product, filter)
+    );
     setProducts(filteredProducts);
     setIsLoading(false);
   }, [category, filter, allProducts]);
