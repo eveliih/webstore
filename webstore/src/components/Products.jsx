@@ -1,44 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import Card from "./Card";
-import { useSelector, useDispatch } from "react-redux";
-import { initializeCart } from "../reducers/cartReducer";
-import { initUser } from "../reducers/userReducer";
-import { matchesFilter } from "../helpers/utils";
-import LoadingMessage from "./LoadingMessage";
 
-const getFilter = (state) => state.filter;
-const getProducts = (state) => state.products;
-const getUser = (state) => state.user;
+import LoadingMessage from "./LoadingMessage";
+import NoProductsFound from "./NoProductsFound";
+import { useFilteredProducts, useInitializeCart } from "../helpers/hooks";
 
 const ProductList = () => {
   const { category } = useParams();
-  const filter = useSelector(getFilter);
-  const allProducts = useSelector(getProducts);
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const dispatch = useDispatch();
-  const user = useSelector(getUser);
-
-  useEffect(() => {
-    setIsLoading(true);
-    const filteredProducts = allProducts.filter((product) =>
-      matchesFilter(product, filter)
-    );
-    setProducts(filteredProducts);
-    setIsLoading(false);
-  }, [category, filter, allProducts]);
-
-  useEffect(() => {
-    if (user) {
-      dispatch(initializeCart(user.id));
-    }
-  }, [dispatch, user]);
-
-  useEffect(() => {
-    dispatch(initUser());
-  }, [dispatch]);
+  const { products, isLoading } = useFilteredProducts(category);
+  useInitializeCart();
 
   return (
     <>
@@ -92,14 +64,9 @@ const ProductList = () => {
               </Col>
             ))}
           </Row>
-        ) : filter !== "" ? (
-          <Col>
-            <p>
-              No products found matching your search term. Please try a
-              different keyword.
-            </p>
-          </Col>
-        ) : null}
+        ) : (
+          <NoProductsFound />
+        )}
       </Row>
     </>
   );
