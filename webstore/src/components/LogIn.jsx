@@ -24,6 +24,7 @@ function LoginForm({ setShowLoginForm, setShowRegisterForm }) {
       navigate("/products");
     } catch (e) {
       notifyWith("wrong username or password", "error");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 

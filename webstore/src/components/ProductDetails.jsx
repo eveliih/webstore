@@ -51,6 +51,7 @@ const CreateProductDetails = () => {
   const handleAddToCart = async () => {
     if (!user) {
       notifyWith("Please log in before adding items to the cart.", "error");
+      window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
 
@@ -59,11 +60,13 @@ const CreateProductDetails = () => {
 
       if (!product) {
         notifyWith("Product not found. Please try again.", "error");
+        window.scrollTo({ top: 0, behavior: "smooth" });
         return;
       }
 
       if (!cart || !cart.id) {
         notifyWith("Cart not found. Please try again.", "error");
+        window.scrollTo({ top: 0, behavior: "smooth" });
         return;
       }
 
@@ -97,10 +100,11 @@ const CreateProductDetails = () => {
       }
 
       await cartService.updateCartTotal(cart.id, newTotal);
-
       notifyWith("Item added to cart successfully!", "success");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (error) {
       notifyWith("Failed to add item to cart. Please try again.", "error");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 

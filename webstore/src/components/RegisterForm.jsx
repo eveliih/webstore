@@ -19,6 +19,8 @@ function RegisterForm({ setShowRegisterForm }) {
     event.preventDefault();
     if (password !== confirmPassword) {
       notifyWith("Passwords do not match", "error");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
       return;
     }
     try {
@@ -31,6 +33,7 @@ function RegisterForm({ setShowRegisterForm }) {
     } catch (e) {
       console.log("error");
       notifyWith("Registration failed", "error");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
