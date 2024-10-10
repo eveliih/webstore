@@ -44,7 +44,6 @@ const EmailModal = ({ show, handleClose, total }) => {
       }
 
       dispatch(clearCart());
-
       dispatch(notify("Order done and email sent!", "success"));
       window.scrollTo({ top: 0, behavior: "smooth" });
       handleClose();
