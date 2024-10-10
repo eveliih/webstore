@@ -20,7 +20,7 @@
 #root {
   margin: 0px ;
   padding: 0px ;
-  min-width: 70%;
+  min-width: 58%;
   display: flex;
   flex-direction: column;
   min-height: 100vh;

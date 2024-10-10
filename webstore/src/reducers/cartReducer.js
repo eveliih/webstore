@@ -41,8 +41,6 @@ const cartSlice = createSlice({
       if (item) {
         item.quantity = quantity;
         storageService.saveCartItems(state.cartItems);
-      } else {
-        console.log(`Item with id ${id} not found`);
       }
     },
   },
@@ -73,14 +71,11 @@ export const initializeCart = (userId) => {
       let cart = await cartService.getCart(userId);
       if (!cart) {
         cart = await cartService.addCart(userId, 0);
-        console.log("New cart created for user:", userId);
       }
       dispatch(setCart(cart));
       let cartItems = cart ? await cartService.getCartItems(cart.id) : [];
       dispatch(setCartItems(cartItems));
-    } catch (error) {
-      console.error("Failed to initialize cart:", error);
-    }
+    } catch (error) {}
   };
 };
 

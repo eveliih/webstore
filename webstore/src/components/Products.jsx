@@ -1,46 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import Card from "./Card";
-import { useSelector, useDispatch } from "react-redux";
-import { initializeCart } from "../reducers/cartReducer";
-import { initUser } from "../reducers/userReducer";
+import LoadingMessage from "./LoadingMessage";
+import NoProductsFound from "./NoProductsFound";
+import { useFilteredProducts, useInitializeCart } from "../helpers/hooks";
+import { useSelector } from "react-redux";
 
 const getFilter = (state) => state.filter;
-const getProducts = (state) => state.products;
-const getUser = (state) => state.user;
 
 const ProductList = () => {
-  const { category } = useParams();
   const filter = useSelector(getFilter);
-  const allProducts = useSelector(getProducts);
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const dispatch = useDispatch();
-  const user = useSelector(getUser);
-
-  useEffect(() => {
-    setIsLoading(true);
-    const filteredProducts = allProducts.filter((product) => {
-      const matchesFilter =
-        filter === "" ||
-        product.productCategory.name.toLowerCase() === filter.toLowerCase() ||
-        product.name.toLowerCase().includes(filter.toLowerCase());
-      return matchesFilter;
-    });
-    setProducts(filteredProducts);
-    setIsLoading(false);
-  }, [category, filter, allProducts]);
-
-  useEffect(() => {
-    if (user) {
-      dispatch(initializeCart(user.id));
-    }
-  }, [dispatch, user]);
-
-  useEffect(() => {
-    dispatch(initUser());
-  }, [dispatch]);
+  const { category } = useParams();
+  const { products, isLoading } = useFilteredProducts(category);
+  useInitializeCart();
 
   return (
     <>
@@ -64,9 +37,7 @@ const ProductList = () => {
       </Row>
       <Row>
         {isLoading ? (
-          <Col>
-            <p>Loading products...</p>
-          </Col>
+          <LoadingMessage />
         ) : products.length > 0 ? (
           <Row>
             {products.map((product) => (
@@ -97,12 +68,7 @@ const ProductList = () => {
             ))}
           </Row>
         ) : filter !== "" ? (
-          <Col>
-            <p>
-              No products found matching your search term. Please try a
-              different keyword.
-            </p>
-          </Col>
+          <NoProductsFound />
         ) : null}
       </Row>
     </>

@@ -39,9 +39,7 @@ const EmailModal = ({ show, handleClose, total }) => {
       const emailBody = generateEmailBody(total, cartItems, products);
       await emailService.sendEmail(email, "Order Confirmation", emailBody);
 
-      console.log(cart);
       if (cart && cart.id) {
-        console.log("Deleting cart", cart.id);
         await cartService.deleteCart(cart.id);
       }
 
@@ -51,7 +49,6 @@ const EmailModal = ({ show, handleClose, total }) => {
       handleClose();
       navigate("/thank-you");
     } catch (error) {
-      console.error("Failed to process order", error);
       setErrorMessage("Failed to process order. Please try again.");
     } finally {
       setLoading(false);

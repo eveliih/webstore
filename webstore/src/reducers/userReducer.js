@@ -50,7 +50,6 @@ export const loginUser = (credentials) => {
       } else {
         dispatch(notify("Login failed. Please try again", "error"));
       }
-      console.log("loginUser error", e);
     }
   };
 };
