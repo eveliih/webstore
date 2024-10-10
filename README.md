@@ -10,11 +10,11 @@ App running here https://foodonline.azurewebsites.net/.
 ## Application Overview
 On the front page, you can browse different products. If you want to see products from a specific category, use the **"Products"** dropdown menu in the header. You can also search for a specific product by typing its name into the search bar.
 
-By clicking on a product, you can see more details about it, such as its ingredients and origin. On the product details page, you can add items to your shopping cart. To be able to add items to your cart, you must log in.
+By clicking on a product, you can see more details about it, such as its ingredients and origin. On the product details page, you can add items to your shopping cart. To be able to add items to your cart, you must log in. If you already have the item in your cart, you will see the total quantity on the product details page. You can adjust the total quantity by selecting to desired amount and adding it to the cart.
 
 If you don't have a username and password yet, click the **"Log in"** button and then click **"Create Account"**. Fill in your name, username, and password. After a successful sign-up, you can log in and add items to your cart.
 
-You can view your cart items by clicking the **"Shopping Cart"** button. In the shopping cart, you can remove items or place an order. Place an order by entering your email address. Your email will only be used to send you the order details — your address will not be saved. No actual orders are placed, as this is a study project!
+You can view your cart items by clicking the **"Shopping Cart"** button. In the shopping cart, you can remove items or place an order. If you don't want to remove the product totally, but you want to decrease or increase the quantity of the product, please do it on the product details page. Place an order by entering your email address. Your email will only be used to send you the order details — your address will not be saved. No actual orders are placed, as this is a study project! But you will receive an email from the address: fullstack.foodonline@gmail.com.
 
 After successfully placing an order, you can view all your orders by clicking the **"Order History"** button. This button can also be found in the shopping cart at any time.
 
@@ -61,6 +61,7 @@ The app is responsive and works smoothly on any device.
 - Azure App Service
 - Azure SQL Database
 - Nodemailer
+- Cypress
 - ...
 
 ## Database structure
