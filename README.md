@@ -6,8 +6,10 @@ App running here https://foodonline.azurewebsites.net/.
 
 *(I'm using the free products from Azure to host my app, so it might take a little bit of time before the app wakes up if it hasn't been used lately. Please give it a little bit of time and refresh the page if needed. You'll know the app is working when you see the products on the front page.)*
 
+The frontend is built with React, and the backend is built with Node.js. Both the database and the application are hosted on Azure. This was my first experience using Azure, and it presented some challenges, particularly when working with only free-tier services.
 
-## Application Overview
+
+## Application Overview and User Instructions
 On the front page, you can browse different products. If you want to see products from a specific category, use the **"Products"** dropdown menu in the header. You can also search for a specific product by typing its name into the search bar.
 
 By clicking on a product, you can see more details about it, such as its ingredients and origin. On the product details page, you can add items to your shopping cart. To be able to add items to your cart, you must log in. If you already have the item in your cart, you will see the total quantity on the product details page. You can adjust the total quantity by selecting to desired amount and adding it to the cart.
@@ -51,15 +53,14 @@ The app is responsive and works smoothly on any device.
 - React Boostrap
 - Node.js
 - Vite
-- GitHub Actions
-- Relational Database
+- GitHub Actions (deployment pipeline with e2e tests)
 - Express
 - Axios
 - Redux
 - Bcrypt
 - Sequelize
 - Azure App Service
-- Azure SQL Database
+- Relational Database (Azure SQL Database)
 - Nodemailer
 - Cypress
 - ...
