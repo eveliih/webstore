@@ -88,3 +88,7 @@ The project's database is hosted on **Azure SQL Database**. The key tables used 
 - Similarly, the **Cart Items** table contains foreign keys, `cart_id` and `product_id`, referencing the **Carts** and **Products** tables.
 - The **Products** table has a foreign key, `category_id`, that references the **Product Categories** table.
 - The **Images** table has a foreign key, `product_id`, that references the **Products** table.
+
+
+### Credits
+Product images from Pixabay. App icon from Flaticon.

@@ -122,14 +122,14 @@ const CreateProductDetails = () => {
   return (
     <Container>
       <Row>
-        <Col xs={12} sm={12} md={12} lg={6} xl={6} xxl={6}>
+        <Col xs={12} sm={12} md={12} lg={5} xl={5} xxl={5}>
           <img
             id="productDetailsImage"
             src={product.image.url}
             alt={product.name}
           />
         </Col>
-        <Col xs={12} sm={12} md={12} lg={6} xl={6} xxl={6}>
+        <Col xs={12} sm={12} md={12} lg={7} xl={7} xxl={7}>
           <h1>{product.name}</h1>
           <h2>
             Price: {product.price} €/{product.unit}
