@@ -20,7 +20,9 @@ export const useFilteredProducts = (category) => {
       matchesFilter(product, filter)
     );
     setProducts(filteredProducts);
-    setIsLoading(false);
+    if (allProducts.length > 0) {
+      setIsLoading(false);
+    }
   }, [category, filter, allProducts]);
 
   return { products, isLoading };

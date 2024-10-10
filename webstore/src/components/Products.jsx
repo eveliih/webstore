@@ -2,12 +2,15 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import Card from "./Card";
-
 import LoadingMessage from "./LoadingMessage";
 import NoProductsFound from "./NoProductsFound";
 import { useFilteredProducts, useInitializeCart } from "../helpers/hooks";
+import { useSelector } from "react-redux";
+
+const getFilter = (state) => state.filter;
 
 const ProductList = () => {
+  const filter = useSelector(getFilter);
   const { category } = useParams();
   const { products, isLoading } = useFilteredProducts(category);
   useInitializeCart();
@@ -64,9 +67,9 @@ const ProductList = () => {
               </Col>
             ))}
           </Row>
-        ) : (
+        ) : filter !== "" ? (
           <NoProductsFound />
-        )}
+        ) : null}
       </Row>
     </>
   );

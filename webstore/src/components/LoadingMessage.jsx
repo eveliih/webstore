@@ -3,7 +3,7 @@ import { Col } from "react-bootstrap";
 
 const LoadingMessage = () => (
   <Col>
-    <p>Loading products...</p>
+    <b>Loading products...please wait.</b>
   </Col>
 );
 
