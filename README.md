@@ -1,5 +1,5 @@
 # Online Food Store - FoodOnline
-This is the final project for the **Full Stack Open** course. The project is a webstore where users can log in, add items to their shopping cart and place orders.
+This is the final project for the **Full Stack Open** course. The project is a webstore where users can log in, add items to their shopping cart, place orders and see order history. After placing an order, you will receive your order details via email.
 
 App running here https://foodonline.azurewebsites.net/.
 😎 

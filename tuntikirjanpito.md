@@ -55,7 +55,7 @@
 | 8.10. | 6 | Deployn korjaamista, deployatty sovellus lakkasi toimimasta, vika Azuressa? kokeiltu kaikenlaista ja lopulta saatu toimimaan |
 | 9.10. | 3 | Refaktorointia ja testaamista, bugien korjaamista, pieniä parannuksia|
 | 10.10. | 7 | Refaktorointia ja testaamista, bugien korjaamista, pieniä parannuksia, tuotteiden lisäämistä, css parannuksia, viimeistelyä, readme:n päivittämistä|
-| yhteensä | 177 | |
+| yhteensä | 178 | |
 
 
 
