@@ -12,7 +12,7 @@ The frontend is built with React, and the backend is built with Node.js. Both th
 ## Application Overview and User Instructions
 On the front page, you can browse different products. If you want to see products from a specific category, use the **"Products"** dropdown menu in the header. You can also search for a specific product by typing its name into the search bar.
 
-By clicking on a product, you can see more details about it, such as its ingredients and origin. On the product details page, you can add items to your shopping cart. To be able to add items to your cart, you must log in. If you already have the item in your cart, you will see the total quantity on the product details page. You can adjust the total quantity by selecting to desired amount and adding it to the cart.
+By clicking on a product, you can see more details about it, such as its ingredients and origin. On the product details page, you can add items to your shopping cart. To be able to add items to your cart, you must log in. If an item is already in your cart, the total quantity will be displayed on the product details page. You can adjust the quantity by selecting the desired amount and adding it to the cart.
 
 If you don't have a username and password yet, click the **"Log in"** button and then click **"Create Account"**. Fill in your name, username, and password. After a successful sign-up, you can log in and add items to your cart.
 
@@ -38,13 +38,15 @@ The app is responsive and works smoothly on any device.
 │   ├── /src
 │     ├── /assets 
 │     ├── /components 
+│     ├── /helpers
 │     ├── /hooks 
 │     ├── /reducers
 │     ├── /services
 │     ├── store.js
 │     ├── App.jsx
+│     ├── App.css
 │     └── main.jsx 
-│   ├── /test
+│   ├── index.html
 │   └──  package.json
 ```
 
